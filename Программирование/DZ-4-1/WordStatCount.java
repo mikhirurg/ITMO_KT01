@@ -24,9 +24,7 @@ public class WordStatCount {
             int c = 0;
             int n = 0;
             StringBuilder build = new StringBuilder();
-            while (true) {
-                c = r.read();
-                if (c == -1) break;
+            while ((c = r.read()) != -1) {
                 if (Character.isLetter(c) || Character.getType(c) == Character.DASH_PUNCTUATION || c == '\'') {
                     build.append(Character.toLowerCase((char) c));
                 } else {
