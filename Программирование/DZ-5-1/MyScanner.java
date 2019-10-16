@@ -59,18 +59,7 @@ public class MyScanner {
         String l = System.lineSeparator();
         while (hasNextChar()) {
             c = nextChar();
-           /* if (c == System.lineSeparator().charAt(1)) {
-                EOLN = true;
-                int curPos = 1;
-                while (curPos < l.length()) {
-                    c = nextChar();
-                    if (c != l.charAt(curPos)) {
-                        EOLN = false;
-                        break;
-                    }
-                }
-            }*/
-            if (c=='\n') break;
+            if (c == '\n') break;
             sb.append(c);
         }
         return sb.toString();

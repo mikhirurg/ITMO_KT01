@@ -2,10 +2,12 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class ReverseMin {
+    final static int DF_SIZE = 128;
+
     public static void main(String[] args) throws IOException {
         MyScanner in = new MyScanner(System.in);
-        int[][] ar = new int[1][1];
-        int[] size = new int[1];
+        int[][] ar = new int[DF_SIZE][DF_SIZE];
+        int[] size = new int[DF_SIZE];
         int line = 0;
         int maxSize = 0;
         while (in.hasNextChar()) {
@@ -31,8 +33,8 @@ public class ReverseMin {
         }
         int[] cols = new int[maxSize];
         int[] rows = new int[line];
-        Arrays.fill(cols,Integer.MAX_VALUE);
-        Arrays.fill(rows,Integer.MAX_VALUE);
+        Arrays.fill(cols, Integer.MAX_VALUE);
+        Arrays.fill(rows, Integer.MAX_VALUE);
         for (int i = 0; i < line; i++) {
             for (int j = 0; j < size[i]; j++) {
                 rows[i] = Math.min(rows[i], ar[i][j]);
