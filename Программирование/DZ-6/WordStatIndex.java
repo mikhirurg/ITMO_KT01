@@ -42,7 +42,6 @@ public class WordStatIndex {
         }
 
         r.close();
-        w.flush();
         w.close();
     }
 }
