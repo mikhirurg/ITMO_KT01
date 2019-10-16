@@ -2,10 +2,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class ReverseSum {
+    final static int DF_SIZE = 128;
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int[][] ar = new int[1][1];
-        int[] size = new int[1];
+        int[][] ar = new int[DF_SIZE][DF_SIZE];
+        int[] size = new int[DF_SIZE];
         int line = 0;
         int maxSize = 0;
         while (in.hasNextLine()) {
