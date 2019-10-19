@@ -106,4 +106,8 @@ public class MyScanner {
     public float nextFloat() throws IOException {
         return Float.parseFloat(next());
     }
+
+    public void close() throws IOException {
+        br.close();
+    }
 }

@@ -15,21 +15,23 @@ public class ReverseSum {
                 size = Arrays.copyOf(size, size.length * 2);
             }
             String st = in.nextLine();
-            Scanner in2 = new Scanner(st);
+            Scanner inLine = new Scanner(st);
             int len = 0;
             ar[line] = new int[1];
-            while (in2.hasNextInt()) {
+            while (inLine.hasNextInt()) {
                 if (len > ar[line].length - 1) {
                     ar[line] = Arrays.copyOf(ar[line], ar[line].length * 2);
                 }
-                int tmp = in2.nextInt();
+                int tmp = inLine.nextInt();
                 ar[line][len] = tmp;
                 len++;
             }
             size[line] = len;
-            if (maxSize < len) maxSize = len;
+            if (maxSize < len){
+              maxSize = len;
+            }
             line++;
-            in2.close();
+            inLine.close();
         }
         in.close();
         int[] cols = new int[maxSize];
