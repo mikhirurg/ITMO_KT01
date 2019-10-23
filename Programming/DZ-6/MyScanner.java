@@ -1,25 +1,28 @@
 import java.io.*;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 public class MyScanner {
     private BufferedReader br;
-    private int bufLen = 4096;
+    private int bufLen = 1048576;
     private char[] buffer = new char[bufLen];
     private int len, pos;
     private boolean EOF = false;
-    private boolean EOLN = false;
 
-    public MyScanner(InputStream is) {
+    MyScanner(InputStream is) {
         br = new BufferedReader(new InputStreamReader(is));
     }
 
-    public MyScanner(String string) {
+    MyScanner(String string) {
         br = new BufferedReader(new StringReader(string));
     }
 
-    public MyScanner(File f, Charset cset) throws FileNotFoundException {
-        br = new BufferedReader(new FileReader(f));
+    MyScanner(File f, Charset chset) throws FileNotFoundException {
+        br = new BufferedReader(new InputStreamReader(new FileInputStream(f), chset));
+    }
+
+    public MyScanner(File f) throws FileNotFoundException, UnsupportedEncodingException {
+        String basicCharset = "UTF-8";
+        br = new BufferedReader(new InputStreamReader(new FileInputStream(f), basicCharset));
     }
 
     private void readBuffer() throws IOException {
@@ -31,44 +34,57 @@ public class MyScanner {
             EOF = true;
         }
         pos = 0;
-
-
     }
 
-    public char nextChar() throws IOException {
+    private char nextChar() throws IOException {
         if (pos >= len) {
             readBuffer();
         }
         return buffer[pos++];
     }
 
-    public boolean hasNextChar() throws IOException {
+    boolean hasNextChar() throws IOException {
         nextChar();
         pos--;
         return !EOF;
     }
 
-    public boolean hasNext() throws IOException {
+    boolean hasNext() throws IOException {
         skipBlank();
         nextChar();
         pos--;
         return !EOF;
     }
 
-    public String readLine() throws IOException {
+    String readLine() throws IOException {
         StringBuilder sb = new StringBuilder();
         char c;
-        String l = System.lineSeparator();
         while (hasNextChar()) {
             c = nextChar();
-            if (c == '\n') break;
-            sb.append(c);
+            if (c == '\n') {
+                break;
+            }
+            if (c != '\r') {
+                sb.append(c);
+            }
         }
         return sb.toString();
     }
 
     private void skipBlank() throws IOException {
-        while (hasNextChar() && Character.isWhitespace(nextChar())) ;
+        while (hasNextChar() && Character.isWhitespace(nextChar()));
+        pos--;
+    }
+
+    private boolean isWord(char c) {
+        return Character.isLetter(c) || Character.getType(c) == Character.DASH_PUNCTUATION || c == '\'';
+    }
+
+    private void skipBlankWord() throws IOException {
+        char next = nextChar();
+        while (hasNextChar() && !isWord(next)){
+            next = nextChar();
+        }
         pos--;
     }
 
@@ -80,20 +96,24 @@ public class MyScanner {
             c = nextChar();
             if (!Character.isWhitespace(c)) {
                 sb.append(c);
-            } else break;
+            } else {
+                break;
+            }
         }
         return sb.toString();
     }
 
-    public String nextWord() throws IOException {
-        skipBlank();
+    String nextWord() throws IOException {
+        skipBlankWord();
         StringBuilder sb = new StringBuilder();
         char c;
         while (hasNextChar()) {
             c = nextChar();
-            if (Character.isLetter(c) || Character.getType(c) == Character.DASH_PUNCTUATION || c == '\'') {
-                sb.append(c);
-            } else break;
+            if (isWord(c)) {
+                sb.append(Character.toLowerCase(c));
+            } else {
+                break;
+            }
         }
         return sb.toString();
     }
@@ -107,7 +127,7 @@ public class MyScanner {
         return Double.parseDouble(next());
     }
 
-    public long nextLong() throws IOException {
+    long nextLong() throws IOException {
         return Long.parseLong(next());
     }
 
@@ -123,7 +143,7 @@ public class MyScanner {
         return Float.parseFloat(next());
     }
 
-    public void close() throws IOException {
+    void close() throws IOException {
         br.close();
     }
 }

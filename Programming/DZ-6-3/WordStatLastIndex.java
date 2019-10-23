@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 
-public class WordStatLastIndex2 {
+public class WordStatLastIndex {
     public static void main(String[] args) throws IOException {
         MyScanner read = new MyScanner(new File(args[0]), StandardCharsets.UTF_8);
         FileWriter w = new FileWriter(new File(args[1]), StandardCharsets.UTF_8);
@@ -22,12 +22,15 @@ public class WordStatLastIndex2 {
             while (inLine.hasNextChar() && line.length()>0) {
                 String word = inLine.nextWord();
                 if (word.length() > 0) {
-                    if (wordLine.get(word) == null) {
-                        wordLine.put(word, n);
+                    if (number.get(word) == null) {
                         number.put(word, 1);
                     } else {
-                        wordLine.put(word, Math.max(n, wordLine.get(word)));
                         number.put(word, number.get(word) + 1);
+                    }
+                    if (wordLine.get(word) == null) {
+                        wordLine.put(word, n);
+                    } else {
+                        wordLine.put(word, Math.max(n, wordLine.get(word)));
                     }
                 }
                 n++;

@@ -9,6 +9,7 @@ public class MyScanner {
     private int len, pos;
     private boolean EOF = false;
     private boolean EOLN = false;
+    String basicCharset = "UTF-8";
 
     public MyScanner(InputStream is) {
         br = new BufferedReader(new InputStreamReader(is));
@@ -18,8 +19,8 @@ public class MyScanner {
         br = new BufferedReader(new StringReader(string));
     }
 
-    public MyScanner(File f, Charset cset) throws IOException {
-        br = new BufferedReader(new FileReader(f, cset));
+    public MyScanner(File f, Charset chset) throws FileNotFoundException {
+        br = new BufferedReader(new InputStreamReader(new FileInputStream(f), chset));
     }
 
     private void readBuffer() throws IOException {
