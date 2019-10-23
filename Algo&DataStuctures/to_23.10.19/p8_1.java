@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class p8_1 {
-    static class listElement{
+    static class listElement {
         listElement next;
         int data;
         private int sum;
@@ -9,7 +9,7 @@ public class p8_1 {
     static class stackSum {
        private listElement top = null;
         void push(int x){
-            if (top == null){
+            if (top == null) {
                 listElement e = new listElement();
                 e.data = x;
                 e.sum = x;
@@ -24,7 +24,7 @@ public class p8_1 {
             }
         }
 
-        Integer pop(){
+        Integer pop() {
             if (top != null){
                 int data = top.data;
                 top = top.next;
