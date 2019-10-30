@@ -73,7 +73,7 @@ public class p10_1 {
                 return;
             }
         }
-        //verges[comp1].clear();
+        verges[comp1].clear();
         verges[comp2].add(new pair(x,y));
     }
 
@@ -84,7 +84,7 @@ public class p10_1 {
     static void union(int x, int y){
         int x1 = find(x);
         int y1 = find(y);
-        //addVerge(x1, y1, x, y);
+        addVerge(x1, y1, x, y);
         for (int i = 1; i < p.length; i++){
             if (p[i] == x1){
                 p[i] = y1;
