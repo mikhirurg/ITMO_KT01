@@ -5,8 +5,7 @@ public class MyScanner {
     private BufferedReader br;
     private int bufLen = 1048576;
     private char[] buffer = new char[bufLen];
-    private int len;
-    private int pos;
+    private int len, pos;
     private boolean EOF = false;
 
     MyScanner(InputStream is) {

@@ -2,29 +2,29 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class ReverseMin {
-    final static int DF_SIZE = 128;
+    final static int DF_SIZE = 1;
 
     public static void main(String[] args) throws IOException {
         MyScanner in = new MyScanner(System.in);
-        int[][] ar = new int[DF_SIZE][DF_SIZE];
+        int[][] matrix = new int[DF_SIZE][DF_SIZE];
         int[] size = new int[DF_SIZE];
         int line = 0;
         int maxSize = 0;
         while (in.hasNextChar()) {
-            if (line > ar.length - 1) {
-                ar = Arrays.copyOf(ar, ar.length * 2);
+            if (line > matrix.length - 1) {
+                matrix = Arrays.copyOf(matrix, matrix.length * 2);
                 size = Arrays.copyOf(size, size.length * 2);
             }
             String st = in.readLine();
             MyScanner in2 = new MyScanner(st);
             int len = 0;
-            ar[line] = new int[1];
+            matrix[line] = new int[1];
             while (in2.hasNext()) {
-                if (len > ar[line].length - 1) {
-                    ar[line] = Arrays.copyOf(ar[line], ar[line].length * 2);
+                if (len > matrix[line].length - 1) {
+                    matrix[line] = Arrays.copyOf(matrix[line], matrix[line].length * 2);
                 }
                 int tmp = in2.nextInt();
-                ar[line][len] = tmp;
+                matrix[line][len] = tmp;
                 len++;
             }
             size[line] = len;
@@ -37,8 +37,8 @@ public class ReverseMin {
         Arrays.fill(rows, Integer.MAX_VALUE);
         for (int i = 0; i < line; i++) {
             for (int j = 0; j < size[i]; j++) {
-                rows[i] = Math.min(rows[i], ar[i][j]);
-                cols[j] = Math.min(cols[j], ar[i][j]);
+                rows[i] = Math.min(rows[i], matrix[i][j]);
+                cols[j] = Math.min(cols[j], matrix[i][j]);
             }
         }
         for (int i = 0; i < line; i++) {

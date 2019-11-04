@@ -11,22 +11,19 @@ public class WordStatLastIndex {
     public static void main(String[] args) throws IOException {
         MyScanner read = new MyScanner(new File(args[0]), StandardCharsets.UTF_8);
         FileWriter w = new FileWriter(new File(args[1]), StandardCharsets.UTF_8);
-        HashMap<String, ArrayList<Integer>> map = new LinkedHashMap<>();
-        HashMap<String, Integer> wordLine;
+        HashMap<String, List<Integer>> map = new LinkedHashMap<>();
+
         HashMap<String, Integer> number = new LinkedHashMap<>();
         while (read.hasNextChar()) {
             String line = read.readLine();
             int n = 1;
             MyScanner inLine = new MyScanner(line);
-            wordLine = new LinkedHashMap<>();
+            HashMap<String, Integer> wordLine = new LinkedHashMap<>();
             while (inLine.hasNextChar() && line.length()>0) {
                 String word = inLine.nextWord();
                 if (word.length() > 0) {
-                    if (number.get(word) == null) {
-                        number.put(word, 1);
-                    } else {
-                        number.put(word, number.get(word) + 1);
-                    }
+                  number.put(word, number.getOrDefault(word, 0) + 1)
+
                     if (wordLine.get(word) == null) {
                         wordLine.put(word, n);
                     } else {
