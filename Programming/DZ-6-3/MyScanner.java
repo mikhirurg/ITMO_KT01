@@ -8,8 +8,52 @@ public class MyScanner {
     private int len;
     private int pos;
     private boolean EOF = false;
-    final private int DECODE_WORD = 1;
-    final private int DECODE_TOKEN = 2;
+
+    interface TokenWorker {
+        void skip() throws IOException;
+
+        boolean append(StringBuilder b, Character c) throws IOException;
+    }
+
+    class WordParser implements TokenWorker {
+        @Override
+        public void skip() throws IOException {
+            char next = nextChar();
+            while (hasNextChar() && !isWord(next)) {
+                next = nextChar();
+            }
+            pos--;
+        }
+
+        @Override
+        public boolean append(StringBuilder b, Character c) {
+            if (isWord(c)) {
+                b.append(Character.toLowerCase(c));
+                return true;
+            }
+            return false;
+        }
+    }
+
+    class TokenParser implements TokenWorker {
+        @Override
+        public void skip() throws IOException {
+            while (hasNextChar() && Character.isWhitespace(nextChar())) ;
+            pos--;
+        }
+
+        @Override
+        public boolean append(StringBuilder b, Character c) throws IOException {
+            if (isWord(c)) {
+                b.append(Character.toLowerCase(c));
+                return true;
+            }
+            return false;
+        }
+    }
+
+    TokenParser tParser = new TokenParser();
+    WordParser wParser = new WordParser();
 
     MyScanner(InputStream is) {
         br = new BufferedReader(new InputStreamReader(is));
@@ -75,7 +119,7 @@ public class MyScanner {
     }
 
     private void skipBlank() throws IOException {
-        while (hasNextChar() && Character.isWhitespace(nextChar()));
+        while (hasNextChar() && Character.isWhitespace(nextChar())) ;
         pos--;
     }
 
@@ -85,73 +129,58 @@ public class MyScanner {
 
     private void skipBlankWord() throws IOException {
         char next = nextChar();
-        while (hasNextChar() && !isWord(next)){
+        while (hasNextChar() && !isWord(next)) {
             next = nextChar();
         }
         pos--;
     }
 
-    private String next(int TOKEN_TYPE) throws IOException {
-        switch (TOKEN_TYPE){
-            case DECODE_WORD: skipBlankWord();
-            break;
-            case DECODE_TOKEN: skipBlank();
-        }
+
+    public String next(TokenWorker worker) throws IOException {
+        worker.skip();
         StringBuilder sb = new StringBuilder();
         char c;
         while (hasNextChar()) {
             c = nextChar();
-            boolean isReading = false;
-            switch (TOKEN_TYPE){
-                case DECODE_WORD:{
-                    isReading = isWord(c);
-                    c = Character.toLowerCase(c);
-                }
-                break;
-                case DECODE_TOKEN:{
-                    isReading = !Character.isWhitespace(c);
-                }
-            }
-            if (isReading) {
-                sb.append(c);
-            } else {
+            if (!worker.append(sb, c)) {
                 break;
             }
         }
         return sb.toString();
     }
 
+
     String nextWord() throws IOException {
-        return next(DECODE_WORD);
+        return next(wParser);
     }
 
     String nextToken() throws IOException {
-        return next(DECODE_TOKEN);
+        return next(tParser);
     }
 
 
     public int nextInt() throws IOException {
-        return Integer.parseInt(next(DECODE_TOKEN));
+        return Integer.parseInt(nextToken());
     }
 
     public double nextDouble() throws IOException {
-        return Double.parseDouble(next(DECODE_TOKEN));
+        return Double.parseDouble(nextToken());
     }
 
     long nextLong() throws IOException {
-        return Long.parseLong(next(DECODE_TOKEN));
+        return Long.parseLong(nextToken());
     }
 
     public byte nextByte() throws IOException {
-        return Byte.parseByte(next(DECODE_TOKEN));
+        return Byte.parseByte(nextToken());
     }
 
     public short nextShort() throws IOException {
-        return Short.parseShort(next(DECODE_TOKEN));
+        return Short.parseShort(nextToken());
     }
 
     public float nextFloat() throws IOException {
-        return Float.parseFloat(next(DECODE_TOKEN));
+        return Float.parseFloat(nextToken());
     }
 
     void close() throws IOException {
