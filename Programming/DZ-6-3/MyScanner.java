@@ -8,6 +8,8 @@ public class MyScanner {
     private int len;
     private int pos;
     private boolean EOF = false;
+    final private int DECODE_WORD = 1;
+    final private int DECODE_TOKEN = 2;
 
     MyScanner(InputStream is) {
         br = new BufferedReader(new InputStreamReader(is));
@@ -21,7 +23,7 @@ public class MyScanner {
         br = new BufferedReader(new InputStreamReader(new FileInputStream(f), chset));
     }
 
-    public MyScanner(File f) throws FileNotFoundException, UnsupportedEncodingException {
+    MyScanner(File f) throws FileNotFoundException, UnsupportedEncodingException {
         String basicCharset = "UTF-8";
         br = new BufferedReader(new InputStreamReader(new FileInputStream(f), basicCharset));
     }
@@ -89,13 +91,28 @@ public class MyScanner {
         pos--;
     }
 
-    public String next() throws IOException {
-        skipBlank();
+    private String next(int TOKEN_TYPE) throws IOException {
+        switch (TOKEN_TYPE){
+            case DECODE_WORD: skipBlankWord();
+            break;
+            case DECODE_TOKEN: skipBlank();
+        }
         StringBuilder sb = new StringBuilder();
         char c;
         while (hasNextChar()) {
             c = nextChar();
-            if (!Character.isWhitespace(c)) {
+            boolean isReading = false;
+            switch (TOKEN_TYPE){
+                case DECODE_WORD:{
+                    isReading = isWord(c);
+                    c = Character.toLowerCase(c);
+                }
+                break;
+                case DECODE_TOKEN:{
+                    isReading = !Character.isWhitespace(c);
+                }
+            }
+            if (isReading) {
                 sb.append(c);
             } else {
                 break;
@@ -105,43 +122,36 @@ public class MyScanner {
     }
 
     String nextWord() throws IOException {
-        skipBlankWord();
-        StringBuilder sb = new StringBuilder();
-        char c;
-        while (hasNextChar()) {
-            c = nextChar();
-            if (isWord(c)) {
-                sb.append(Character.toLowerCase(c));
-            } else {
-                break;
-            }
-        }
-        return sb.toString();
+        return next(DECODE_WORD);
+    }
+
+    String nextToken() throws IOException {
+        return next(DECODE_TOKEN);
     }
 
 
     public int nextInt() throws IOException {
-        return Integer.parseInt(next());
+        return Integer.parseInt(next(DECODE_TOKEN));
     }
 
     public double nextDouble() throws IOException {
-        return Double.parseDouble(next());
+        return Double.parseDouble(next(DECODE_TOKEN));
     }
 
     long nextLong() throws IOException {
-        return Long.parseLong(next());
+        return Long.parseLong(next(DECODE_TOKEN));
     }
 
     public byte nextByte() throws IOException {
-        return Byte.parseByte(next());
+        return Byte.parseByte(next(DECODE_TOKEN));
     }
 
     public short nextShort() throws IOException {
-        return Short.parseShort(next());
+        return Short.parseShort(next(DECODE_TOKEN));
     }
 
     public float nextFloat() throws IOException {
-        return Float.parseFloat(next());
+        return Float.parseFloat(next(DECODE_TOKEN));
     }
 
     void close() throws IOException {
