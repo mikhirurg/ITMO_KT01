@@ -97,7 +97,7 @@ public class MyScanner {
     }
 
     boolean hasNext() throws IOException {
-        skipBlank();
+        tParser.skip();
         nextChar();
         pos--;
         return !EOF;
@@ -118,21 +118,9 @@ public class MyScanner {
         return sb.toString();
     }
 
-    private void skipBlank() throws IOException {
-        while (hasNextChar() && Character.isWhitespace(nextChar())) ;
-        pos--;
-    }
 
     private boolean isWord(char c) {
         return Character.isLetter(c) || Character.getType(c) == Character.DASH_PUNCTUATION || c == '\'';
-    }
-
-    private void skipBlankWord() throws IOException {
-        char next = nextChar();
-        while (hasNextChar() && !isWord(next)) {
-            next = nextChar();
-        }
-        pos--;
     }
 
 
