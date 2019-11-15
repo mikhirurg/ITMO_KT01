@@ -11,7 +11,6 @@ public class MyScanner {
 
     interface TokenWorker {
         void skip() throws IOException;
-
         boolean append(StringBuilder b, Character c) throws IOException;
     }
 

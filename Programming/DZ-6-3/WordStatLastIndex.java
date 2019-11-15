@@ -8,8 +8,8 @@ public class WordStatLastIndex {
     public static void main(String[] args) throws IOException {
         MyScanner read = new MyScanner(new File(args[0]), StandardCharsets.UTF_8);
         FileWriter w = new FileWriter(new File(args[1]), StandardCharsets.UTF_8);
-        HashMap<String, IntList> map = new LinkedHashMap<>();
-        HashMap<String, Integer> number = new LinkedHashMap<>();
+        Map<String, IntList> map = new LinkedHashMap<>();
+        Map<String, Integer> number = new LinkedHashMap<>();
 
         while (read.hasNextChar()) {
             String line = read.readLine();
