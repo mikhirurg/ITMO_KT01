@@ -1,8 +1,13 @@
 \documentclass[12pt]{article}
 \usepackage[russian]{babel}
-\usepackage{moreverb}
-\usepackage{amsfonts}
+\usepackage{moreverb, amsfonts, amssymb, fancybox, fancyhdr}
+\author{\copyright~~@mikhirurg}
+\date{17 nov 2019}
+\fancyhead[R]{ \copyright @mikhirurg - Адаптивное арифметическое кодирование}
+\fancyhead[L]{}
+\fancyhead[C]{}
 \begin{document}
+\pagestyle{fancy}
 \part*{Адаптивное арифметическое кодирование}
 Для арифметиеского кодирования существует адаптивный алгоритм. Его идея заключется в том, что частоты символов, использующиеся при кодировании входной последовательности изменяются по мере получения каждого нового символа. То есть происходит <<адаптация>> алгоритма к входным данным. При декодировании происходит аналогичный процесс.
 \section*{Алгоритм кодирования}

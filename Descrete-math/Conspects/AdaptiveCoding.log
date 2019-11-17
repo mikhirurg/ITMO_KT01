@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.16)  17 NOV 2019 17:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.16)  17 NOV 2019 18:07
 entering extended mode
 **./AdaptiveCoding.tex
 (AdaptiveCoding.tex
@@ -285,6 +285,39 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+("C:\Users\mikha\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amssymb.s
+ty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+("C:\Users\mikha\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fancybox\fancybox.
+sty"
+Package: fancybox 2010/05/15 1.4
+
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+\@fancybox=\box27
+\shadowsize=\dimen104
+\@Sbox=\box28
+\do@VerbBox=\toks17
+\the@fancyput=\toks18
+\this@fancyput=\toks19
+\EndVerbatimTokens=\toks20
+\Verbatim@Outfile=\write3
+\Verbatim@Infile=\read2
+)
+("C:\Users\mikha\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fancyhdr\fancyhdr.
+sty"
+Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip43
+\f@nch@O@elh=\skip44
+\f@nch@O@erh=\skip45
+\f@nch@O@olh=\skip46
+\f@nch@O@orh=\skip47
+\f@nch@O@elf=\skip48
+\f@nch@O@erf=\skip49
+\f@nch@O@olf=\skip50
+\f@nch@O@orf=\skip51
 ) (AdaptiveCoding.aux
 LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 4
 .
@@ -295,96 +328,105 @@ File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 ))
 \openout1 = `AdaptiveCoding.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
 
-Overfull \hbox (0.42271pt too wide) in paragraph at lines 7--8
+Overfull \hbox (0.42271pt too wide) in paragraph at lines 12--13
 \T2A/cmr/m/n/12 Для ариф-ме-ти-е-ско-го ко-ди-ро-ва-ния су-ще-ству-ет адап-тив-
 ный ал-го-ритм. Его
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 9.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 14.
+
 ("C:\Users\mikha\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 14.
+
 ("C:\Users\mikha\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-8.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
+3.
 ("C:\Users\mikha\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 18.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 23.
 LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-18.
+23.
 
 ("C:\Users\mikha\AppData\Local\Programs\MiKTeX 2.9\tex/latex/cyrillic\t2acmtt.f
 d"
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-) [1
+)
 
-{C:/Users/mikha/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (11.27701pt too wide) in paragraph at lines 55--55
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+Make it at least 14.49998pt.
+We now make it that large for the rest of the document.
+This may cause the page layout to be inconsistent, however.
+
+[1{C:/Users/mikha/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+]
+Overfull \hbox (11.27701pt too wide) in paragraph at lines 60--60
 [][] \T2A/cmtt/m/n/12 Map<Char, Segment> resizeSegments(alphabet : char[m], wei
 ght :[] 
  []
 
 [2]
-Overfull \hbox (42.14447pt too wide) in paragraph at lines 98--98
+Overfull \hbox (42.14447pt too wide) in paragraph at lines 103--103
 [][]         \T2A/cmtt/m/n/12 double newRight = left + (right - left) * segment
 s[c].right[] 
  []
 
 
-Overfull \hbox (29.79749pt too wide) in paragraph at lines 99--99
+Overfull \hbox (29.79749pt too wide) in paragraph at lines 104--104
 [][]         \T2A/cmtt/m/n/12 double newLeft = left + (right - left) * segments
 [c].left[] 
  []
 
 [3]
-Overfull \hbox (17.64972pt too wide) in paragraph at lines 110--111
+Overfull \hbox (17.64972pt too wide) in paragraph at lines 115--116
 \T2A/cmr/m/n/12 При де-ко-ди-ро-ва-нии стро-ки бу-дут ис-поль-зо-вать-ся функ-ц
 ии [][]\T2A/cmtt/m/n/12 defineWeights()
  []
 
 [4]
-Overfull \hbox (54.49146pt too wide) in paragraph at lines 129--129
+Overfull \hbox (54.49146pt too wide) in paragraph at lines 134--134
 [][]             \T2A/cmtt/m/n/12 if code >= segments[c].left and code < segmen
 ts[c].right:[] 
  []
 
 [5] (AdaptiveCoding.aux) ) 
 Here is how much of TeX's memory you used:
- 1688 strings out of 492450
- 21279 string characters out of 3120004
- 92654 words of memory out of 3000000
- 6056 multiletter control sequences out of 15000+200000
+ 2413 strings out of 492450
+ 29300 string characters out of 3120004
+ 99973 words of memory out of 3000000
+ 6770 multiletter control sequences out of 15000+200000
  16210 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 26i,4n,27p,1145b,252s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 26i,15n,45p,1145b,400s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\mikha\AppData\Local\MiKTeX\2.9\fonts/pk/lj
 four/lh/lh-t2a/dpi600\larm1095.pk> <C:\Users\mikha\AppData\Local\MiKTeX\2.9\fon
 ts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\mikha\AppData\Local\MiKTeX
 \2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1200.pk> <C:\Users\mikha\AppData\Loca
 l\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\mikha\AppD
 ata\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\mi
-kha\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\
-Users\mikha\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx2488.
+kha\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx2488.pk> <C:\
+Users\mikha\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.
 pk><C:/Users/mikha/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmex10.pfb><C:/Users/mikha/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cmextra/cmex8.pfb><C:/Users/mikha/AppData/Local/Programs/MiKTeX 
@@ -397,9 +439,9 @@ s/cm/cmr6.pfb><C:/Users/mikha/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmr8.pfb><C:/Users/mikha/AppData/Local/Programs/MiKTeX 2.9/font
 s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mikha/AppData/Local/Programs/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on AdaptiveCoding.pdf (5 pages, 154104 bytes).
+Output written on AdaptiveCoding.pdf (5 pages, 158415 bytes).
 PDF statistics:
- 272 PDF objects out of 1000 (max. 8388607)
+ 282 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
