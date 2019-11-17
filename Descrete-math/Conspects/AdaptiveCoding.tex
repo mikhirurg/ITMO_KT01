@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+\usepackage[russian]{babel}
+\usepackage{moreverb}
+\usepackage{amsfonts}
+\begin{document}
+\part*{Адаптивное арифметическое кодирование}
+Для арифметиеского кодирования существует адаптивный алгоритм. Его идея заключется в том, что частоты символов, использующиеся при кодировании входной последовательности изменяются по мере получения каждого нового символа. То есть происходит <<адаптация>> алгоритма к входным данным. При декодировании происходит аналогичный процесс.
+\section*{Алгоритм кодирования}
+На вход алгоритму передаётся последовательность символов и алфавит. Каждому символу алфавита $\alpha \in \sum $
+сопоставляестя его вес 
+$ w_\alpha $. В начале работы алгоритма все веса символов равны 1.
+Символы располагаются в естественном порядке, например по возрастанию. Вероятность каждого символа $ \alpha $ "--- $ p(\alpha) $ устанавливется равной его весу, делённому на суммарный вес всех символов: $ p(\alpha) = \frac{w_\alpha}{\sum_{i=1}^n w_i} $. После получения очередного символа и построения нужного интервала, вес символа увеличивается на 1. Когда все вимволы последовательности будут обработаны, необходимо либо записать маркер конца последовательности, либо запомнить её длину, чтобы позже передать декодировщику. После получения нужных границ интервала необходмо выбрать число $ x $ описывающее кодирование:
+$ x \in [l, r]$. Выбор числа $x$ производится также как и в неадаптивном алгоритме. Выбирается число вида $ \frac{x}{2^p}: x,p \in \mathbb N$.
+
+\subsection*{Псевдокод алгоритма}
+
+\begin{itemize}
+	\item \verb'in' "--- строка, подаваемая на вход;
+	\item \verb'Segment' "--- структура, задающая подотрезок отрезка $[0, 1)$, соответствующая конкретному символу.
+   Имеет следующие поля:
+   \begin{itemize}
+		\item \verb'left' "--- левая граница подотрезка
+		\item \verb'right' "--- правая граница подотрезка
+	\end{itemize}
+	\item \verb'm' "--- мощность алфавита;
+   \item \verb'weight' "--- веса символов алфавита;
+	\item \verb'segments' "--- набор подотрезков, соответствующих символам алфавита;
+	\item \verb'left, right' - границы отрезка, содержащие возможный результат арифметического кодирования;
+\end{itemize}
+
+\subsubsection*{Подотрезок}
+\begin{listing}{1}
+struct Segment:
+    double left;
+    double right;
+\end{listing}
+
+
+\subsubsection*{Определение начальных границ подотрезков}
+\begin{listing}{1}
+Map<char, Segment> defineSegments(set<char> alphabet):
+    double p = 1 / alphabet.size()
+    Segments[m] segments
+    double curLeft = 0
+    double curRight = p
+    for i = 0 to m - 1:
+        segments[i].left = curLeft
+        segments[i].right = curRight
+        curLeft = curRight
+        curRight = curRight + p
+    return segments
+\end{listing}
+\subsubsection*{Перестройка подотрезков}
+\begin{listing}{1}
+Map<Char, Segment> resizeSegments(alphabet : char[m], weight : 
+Map<char, int>, segments : Map<char, Segment>):
+    double l = 0
+    int sum = 0
+    for i = 0 to m - 1:
+        sum = sum + weight[i]
+    for i = 0 to m - 1:
+        char c = alphabet[i]
+        segments[c].left = l
+        segments[c].right = l + (weight[c] / sum)
+        l = segments[c].right;
+    return segments
+\end{listing}
+
+\subsubsection*{Построение алфавита по входной строке}
+\begin{listing}{1}
+set<char> getAlphabet(in : String):
+    Set<char> alphabet
+    for i = 0 to in.length() - 1:
+        alphabet.add(in[i])
+    return alphabet
+\end{listing}
+
+\subsubsection*{Определение начальных весов символов алфавита}
+\begin{listing}{1}
+Map<char, int> defineWeights(alphabet : Set<char>):
+    Map<char, int> weight
+    for i = 0 to m - 1:
+        char c = alphabet[i]
+        weight[c] = 1
+    return weight
+\end{listing}
+
+\subsubsection*{Кодирование строки}
+\begin{listing}{1}
+double adaptiveCoding(in : String, alphabet : Set<char>):
+    int[m] weight = defineWeights(alphabet)
+    int[m] segments = defineSegments(alphabet)
+    double left = 0
+    double right = 1
+    for i = 0 to n - 1:
+        char c = alphabet[i]
+        weight[c]++
+        double newRight = left + (right - left) * segments[c].right
+        double newLeft = left + (right - left) * segments[c].left
+        left = newLeft
+        right = newRight
+        resizeSegments(alphabet, weight, segments)
+    return (left + right) / 2;
+\end{listing}
+
+\section*{Алгоритм декодирования}
+При декодировании последовательности символов также используется множество весов $w$ символов алфавита $\sum$. В начале работы алгоритма все веса символов равны 1.  На каждом шаге определяется интевал, содержащий данный код, по интервалу находится символ, который потом записывается в выходную последовательность. Вес полученного символа $\alpha$ увеличивается на 1. Отрезки соответствующие символам алфавита перестраиваются в зависимости от изменённых весов символов и размера текущего подотрезка. При получении символа конца последовательности или обработки нужного числа символов алгоритм завершает работу.
+
+\subsection*{Псевдокод алгоритма}
+При декодировании строки будут использоваться функции \verb'defineWeights()' и \verb'defineSegments()' из алгоритма кодирования.
+
+\subsubsection*{Декодирование}
+\begin{itemize}
+	\item \verb'code' "--- вещественное число, подаваемое на вход;
+	\item \verb'len' "--- длина декодируемой строки;
+	\item \verb'm' "--- мощность алфавита;
+   \item \verb'weight' "--- веса символов алфавита;
+	\item \verb'segments' "--- набор подотрезков, соответствующих символам алфавита;
+\end{itemize}
+\newpage
+\begin{listing}{1}
+String decode(code : double, alphabet : Set<char>, int len):
+    Map<char, int> weight = defineWeights(alphabet)
+    Map<char, Segment> segments = defineSegments(alphabet)
+    String ans = ""
+    for i = 0 to len - 1:
+        for j = 0 to m - 1:
+            char c  = alphabet[j]
+            if code >= segments[c].left and code < segments[c].right:
+                ans = ans + c
+                weight[c]++
+                code = (code - segments[c].left) / 
+segments[c].right - segments[c].left)
+                resizeSegments(alphabet, weight, segments)
+                break;
+    return ans
+\end{listing}
+
+Необходимость применения адаптивного алгоритма возникает в том случае, если вероятностные оценки символов сообщения не известны до начала работы алгоритма. Преимущество такого подхода кодирования заключается в том, что декодировщику не нужно передавать вероятностные оценки для символов, он будет строить их по мере декодирования сообщения, что может сильно сократить вес такого сообщения. 
+\end{document}
