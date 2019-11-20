@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.16)  18 NOV 2019 01:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.16)  18 NOV 2019 02:22
 entering extended mode
 **./AdaptiveCoding.tex
 (AdaptiveCoding.tex
@@ -481,17 +481,23 @@ Overfull \hbox (1.32877pt too wide) in paragraph at lines 148--149
 дли-
  []
 
+
+Overfull \hbox (7.09286pt too wide) in paragraph at lines 153--158
+\T2A/cmr/bx/n/12 Доказательство. \T2A/cmr/m/n/12 Во вре-мя ко-ди-ро-ва-ния стро
+-ки ал-го-ритм вы-би-ра-ет необ-
+ []
+
 [5]
 \c@Cons=\count106
  [6] [7] (AdaptiveCoding.aux) ) 
 Here is how much of TeX's memory you used:
  3050 strings out of 492450
  36560 string characters out of 3120004
- 110125 words of memory out of 3000000
+ 110017 words of memory out of 3000000
  7390 multiletter control sequences out of 15000+200000
  17080 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,16n,45p,1185b,408s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,16n,45p,1186b,408s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\mikha\AppData\Local\MiKTeX\2.9\fonts/
 pk/ljfour/lh/lh-t2a/dpi600\lati1200.pk> <C:\Users\mikha\AppData\Local\MiKTeX\2.
 9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1095.pk> <C:\Users\mikha\AppData\Local\M
@@ -516,9 +522,9 @@ l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mikha/
 AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pf
 b><C:/Users/mikha/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /symbols/msbm10.pfb>
-Output written on AdaptiveCoding.pdf (7 pages, 203734 bytes).
+Output written on AdaptiveCoding.pdf (7 pages, 201756 bytes).
 PDF statistics:
- 346 PDF objects out of 1000 (max. 8388607)
+ 340 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
