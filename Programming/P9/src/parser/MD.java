@@ -67,7 +67,7 @@ public class MD {
         }
 
         private void parseText(MyScanner scanner, Text content) throws IOException {
-            content = new Text(scanner.readLine());
+            content.append(scanner.readLine());
         }
 
     }
