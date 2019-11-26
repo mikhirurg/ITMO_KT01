@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7159db8b-36cf-4296-bf97-62e14957963a" name="Default Changelist" comment="" />
+    <list default="true" id="7159db8b-36cf-4296-bf97-62e14957963a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/markup/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/markup/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/MD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/MD.java" afterDir="false" />
+    </list>
+    <list id="408703e1-5f0b-42e7-bbc9-83b944141d82" name="fix text" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +25,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1U9ndnr7SP3DfhSNU0Ar5rhkWYl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -30,6 +38,9 @@
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="parser" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\ITMO_KT01\Programming\P9\patches" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mikha\IdeaProjects\P9\src\parser" />
@@ -69,16 +80,35 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7159db8b-36cf-4296-bf97-62e14957963a" name="Default Changelist" comment="" />
+      <changelist id="408703e1-5f0b-42e7-bbc9-83b944141d82" name="fix text" comment="" />
       <created>1574777768654</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574777768654</updated>
       <workItem from="1574777773719" duration="9569000" />
+      <workItem from="1574791556997" duration="1210000" />
+      <workItem from="1574793531219" duration="790000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

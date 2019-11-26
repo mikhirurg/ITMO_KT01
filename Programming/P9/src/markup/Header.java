@@ -1,29 +1,24 @@
 package markup;
 
-import markup.Htmlable;
-import markup.ParagraphElements;
+import java.util.List;
 
 public class Header implements Htmlable {
-    String text;
+    List<Markable> content;
     int level;
 
-    public Header(String text, int level) {
-        this.text = text;
+    public Header(List<Markable> content, int level) {
+        this.content = content;
         this.level = level;
     }
-
-    public Header(Text text, int level) {
-        this.text = text.getText();
-        this.level = level;
-    }
-
 
     @Override
     public void toHtml(StringBuilder build) {
         build.append("<h");
         build.append(level);
         build.append(">");
-        build.append(text);
+        for (Markable e : content) {
+            e.toHtml(build);
+        }
         build.append("</h");
         build.append(level);
         build.append(">");

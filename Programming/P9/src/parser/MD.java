@@ -25,7 +25,7 @@ public class MD {
 
         Document parse() throws IOException {
             ArrayList<Htmlable> content = new ArrayList<>();
-            Text hContent = new Text("");
+            ArrayList<Htmlable> hContent = new Text("");
             boolean inHeader = false;
             int hLevel = 0;
             String str;
