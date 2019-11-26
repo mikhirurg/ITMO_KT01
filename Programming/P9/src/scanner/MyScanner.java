@@ -10,6 +10,8 @@ public class MyScanner {
     private int len;
     private int pos;
     private boolean EOF = false;
+    private int savedPos = 0;
+    private int savedLen = 0;
 
     interface TokenWorker {
         void skip() throws IOException;
@@ -137,15 +139,17 @@ public class MyScanner {
             } else {
                 p = 0;
             }
-            if (p==seq.length()-1) {
+            if (p==seq.length()) {
                 isEnd = true;
+                build.setLength(build.length()-1);
             }
         }
-        return build.toString();
+
+        return isEnd?build.toString():null;
     }
 
 
-    public String next(TokenWorker worker) throws IOException {
+    private String next(TokenWorker worker) throws IOException {
         worker.skip();
         StringBuilder sb = new StringBuilder();
         char c;
@@ -194,5 +198,16 @@ public class MyScanner {
 
     void close() throws IOException {
         br.close();
+    }
+
+    public void savePos() {
+        savedPos = pos;
+        savedLen = len;
+    }
+
+    public void reset() {
+        pos = savedPos;
+        EOF = false;
+        len = savedLen;
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Emphasis extends AbstractMarkup {
 
-    Emphasis(List<Markable> content) {
+    public Emphasis(List<Markable> content) {
         super(content);
     }
 

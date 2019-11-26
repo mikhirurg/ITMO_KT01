@@ -3,10 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="7159db8b-36cf-4296-bf97-62e14957963a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/markup/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/markup/Header.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/MD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/MD.java" afterDir="false" />
     </list>
     <list id="408703e1-5f0b-42e7-bbc9-83b944141d82" name="fix text" comment="" />
+    <list id="7438df85-c984-4655-b571-84f0948039a1" name="fix2" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/markup/Emphasis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/markup/Emphasis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/MD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/MD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scanner/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scanner/MyScanner.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +37,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/fix_text.patch" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/fix2.patch" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -81,13 +85,14 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="7159db8b-36cf-4296-bf97-62e14957963a" name="Default Changelist" comment="" />
       <changelist id="408703e1-5f0b-42e7-bbc9-83b944141d82" name="fix text" comment="" />
+      <changelist id="7438df85-c984-4655-b571-84f0948039a1" name="fix2" comment="" />
       <created>1574777768654</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574777768654</updated>
       <workItem from="1574777773719" duration="9569000" />
       <workItem from="1574791556997" duration="1210000" />
-      <workItem from="1574793531219" duration="790000" />
+      <workItem from="1574793531219" duration="2139000" />
     </task>
     <servers />
   </component>
@@ -120,7 +125,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/parser/MD.java</url>
-          <line>57</line>
+          <line>80</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
