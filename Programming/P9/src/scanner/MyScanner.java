@@ -58,7 +58,7 @@ public class MyScanner {
         }
     }
 
-    class State {
+    private static class State {
         private int pos;
         private int len;
         private boolean EOF;
@@ -238,8 +238,12 @@ public class MyScanner {
         return pos;
     }
 
-    public void savePos() {
+    public void saveState() {
         SavedStations.push(new State(pos, len, EOF));
+    }
+
+    public void dropState() {
+        SavedStations.pop();
     }
 
     public void reset() {

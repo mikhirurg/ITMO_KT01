@@ -10,7 +10,7 @@ public class MD {
     enum ParseContext {
         HEADER, PARAGRAPH, LINK, DOCUMENT
     }
-
+/*
     public static Document parse(String md) throws IOException {
         return new Parser(md).parse();
     }
@@ -133,5 +133,5 @@ public class MD {
             String str = scanner.readUntil(String.valueOf(exp));
             return str != null ? new Emphasis(List.of(new Text(str))) : null;
         }
-    }
+    }*/
 }

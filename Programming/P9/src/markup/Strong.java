@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Strong extends AbstractMarkup {
 
-    Strong(List<Markable> content) {
+    public Strong(List<Markable> content) {
         super(content);
     }
 
