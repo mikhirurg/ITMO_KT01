@@ -1,7 +1,10 @@
 package scanner;
 
+import markup.Emphasis;
+
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.Stack;
 
 public class MyScanner {
     private BufferedReader br;
@@ -55,8 +58,35 @@ public class MyScanner {
         }
     }
 
-    TokenParser tParser = new TokenParser();
-    WordParser wParser = new WordParser();
+    class State {
+        private int pos;
+        private int len;
+        private boolean EOF;
+        State(int pos, int len, boolean EOF) {
+            this.pos = pos;
+            this.len = len;
+            this.EOF = EOF;
+        }
+        int getPos() {
+            return pos;
+        }
+        int getLen() {
+            return len;
+        }
+        boolean getEOF() {
+            return EOF;
+        }
+    }
+
+    void resetState(State state) {
+        pos = state.getPos();
+        len = state.getLen();
+        EOF = state.getEOF();
+    }
+
+    private Stack<State> SavedStations = new Stack<>();
+    private TokenParser tParser = new TokenParser();
+    private WordParser wParser = new WordParser();
 
     MyScanner(InputStream is) {
         br = new BufferedReader(new InputStreamReader(is));
@@ -167,7 +197,7 @@ public class MyScanner {
         return next(wParser);
     }
 
-    String nextToken() throws IOException {
+    private String nextToken() throws IOException {
         return next(tParser);
     }
 
@@ -180,7 +210,7 @@ public class MyScanner {
         return Double.parseDouble(nextToken());
     }
 
-    long nextLong() throws IOException {
+    public long nextLong() throws IOException {
         return Long.parseLong(nextToken());
     }
 
@@ -196,18 +226,23 @@ public class MyScanner {
         return Float.parseFloat(nextToken());
     }
 
-    void close() throws IOException {
+    public void close() throws IOException {
         br.close();
     }
 
+    public char getChar() {
+        return buffer[pos];
+    }
+
+    public int getPos() {
+        return pos;
+    }
+
     public void savePos() {
-        savedPos = pos;
-        savedLen = len;
+        SavedStations.push(new State(pos, len, EOF));
     }
 
     public void reset() {
-        pos = savedPos;
-        EOF = false;
-        len = savedLen;
+        resetState(SavedStations.pop());
     }
 }
