@@ -1,7 +1,5 @@
 package scanner;
 
-import markup.Emphasis;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Stack;
@@ -12,6 +10,7 @@ public class MyScanner {
     private char[] buffer = new char[bufLen];
     private int len;
     private int pos;
+    private int nLine;
     private boolean EOF = false;
     private int savedPos = 0;
     private int savedLen = 0;
@@ -62,10 +61,12 @@ public class MyScanner {
         private int pos;
         private int len;
         private boolean EOF;
-        State(int pos, int len, boolean EOF) {
+        private int nline;
+        State(int pos, int len, boolean EOF, int nline) {
             this.pos = pos;
             this.len = len;
             this.EOF = EOF;
+            this.nline = nline;
         }
         int getPos() {
             return pos;
@@ -76,15 +77,19 @@ public class MyScanner {
         boolean getEOF() {
             return EOF;
         }
+        int getNline() {
+            return nline;
+        }
     }
 
     void resetState(State state) {
         pos = state.getPos();
         len = state.getLen();
         EOF = state.getEOF();
+        nLine = state.getNline();
     }
 
-    private Stack<State> SavedStations = new Stack<>();
+    private Stack<State> savedStations = new Stack<>();
     private TokenParser tParser = new TokenParser();
     private WordParser wParser = new WordParser();
 
@@ -156,29 +161,6 @@ public class MyScanner {
         return c =='#' || Character.isLetter(c) || Character.getType(c) == Character.DASH_PUNCTUATION || c == '\'';
     }
 
-    public String readUntil(String seq) throws IOException {
-        StringBuilder build = new StringBuilder();
-        char c;
-        boolean isEnd = false;
-        int p = 0;
-        while (hasNextChar() && !isEnd) {
-            c = nextChar();
-            build.append(c);
-            if (c == seq.charAt(p)) {
-                p++;
-            } else {
-                p = 0;
-            }
-            if (p==seq.length()) {
-                isEnd = true;
-                build.setLength(build.length()-1);
-            }
-        }
-
-        return isEnd?build.toString():null;
-    }
-
-
     private String next(TokenWorker worker) throws IOException {
         worker.skip();
         StringBuilder sb = new StringBuilder();
@@ -239,14 +221,18 @@ public class MyScanner {
     }
 
     public void saveState() {
-        SavedStations.push(new State(pos, len, EOF));
+        savedStations.push(new State(pos, len, EOF, nLine));
     }
 
     public void dropState() {
-        SavedStations.pop();
+        savedStations.pop();
+    }
+
+    public boolean haveSavedStates() {
+        return savedStations.size() != 0;
     }
 
     public void reset() {
-        resetState(SavedStations.pop());
+        resetState(savedStations.pop());
     }
 }

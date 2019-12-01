@@ -4,11 +4,12 @@ import markup.*;
 import scanner.MyScanner;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Md2Html {
     public static Document parse(String md) throws IOException {
-        return (Document) new Parser2(md).parse();
+        return new Document((List<Htmlable>) new Parser2(md).parse());
     }
     static class Parser2 {
         private final MyScanner scanner;
@@ -20,32 +21,58 @@ public class Md2Html {
             this.scanner = new MyScanner(data+"\0\0");
         }
 
-        Object parse() {
-            //Here we will do recursive parsing an object structure
-            final Object result;
-            return null;
-        }
-
-        private void expect(final char c) throws IOException {
-            char ch = scanner.getChar();
-
-            if (ch != c) {
-                throw error("Expected " + c + ", found: " + ch);
+        Object parse() throws IOException {
+            boolean isEnd = false;
+            int p = 0;
+            List<Object> content = new ArrayList<>();
+            String seq = "\0\0";
+            while (scanner.hasNextChar()) {
+                scanner.saveState();
+                char c = scanner.nextChar();
+                if (c==seq.charAt(p)) {
+                    p++;
+                } else {
+                    p = 0;
+                }
+                if (p == seq.length()) {
+                    break;
+                }
+                if (c == '#') {
+                    int level = 0;
+                    while (c == '#') {
+                        c = scanner.nextChar();
+                        level++;
+                    }
+                    if (c == ' ' && level <= 6) {
+                        content.add(parseHeader("\n\n", level));
+                    } else {
+                        scanner.reset();
+                    }
+                } else {
+                    if (c!='\n' && c != '\0') {
+                        if (scanner.haveSavedStates()) {
+                            scanner.reset();
+                        }
+                        content.add(parseParagraph("\n\n"));
+                    } else {
+                        if (scanner.haveSavedStates()) {
+                            scanner.dropState();
+                            scanner.saveState();
+                        } else {
+                            scanner.saveState();
+                        }
+                    }
+                }
             }
-            scanner.nextChar();
-        }
-
-        private void expect(final String seq) throws IOException {
-            for (char c : seq.toCharArray()) {
-                expect(c);
-            }
+            return content;
         }
 
         private Object parseContent(String end) throws IOException {
             boolean isEnd = false;
             int p = 0;
-            List<Object> content = null;
+            List<Object> content = new ArrayList<>();
             StringBuilder text = new StringBuilder();
+            char old = '\0';
             while (scanner.hasNextChar()) {
                 char c = scanner.nextChar();
                 if (c == end.charAt(p)) {
@@ -55,6 +82,9 @@ public class Md2Html {
                 }
                 if (p == end.length()) {
                     isEnd = true;
+                    if (end.equals("\n\n")) {
+                        text.setLength(text.length()-1);
+                    }
                     break;
                 }
 
@@ -82,12 +112,21 @@ public class Md2Html {
                             scanner.reset();
                         }
                     } else {
-                        text.append(c);
+                        boolean isAdding = !(c==old && c == '\n');
+                        if (isAdding) {
+                            text.append(c);
+                        }
                     }
                 }
+                old = c;
             }
             if (!isEnd) {
-                return null;
+                if (!end.equals("\n\n")) {
+                    return null;
+                }
+            }
+            if (text.length() != 0) {
+                content.add(new Text(text.toString()));
             }
             return content;
         }
