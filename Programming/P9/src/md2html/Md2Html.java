@@ -7,6 +7,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Md2Html {
@@ -15,9 +16,19 @@ public class Md2Html {
         '\0', '\r'
     );
 
+    private static Set<Character> markup = Set.of(
+            '*', '_', '-', '`'
+    );
+
+    private static Map<Character,String> specialHtml = Map.of(
+            '<' , "&lt;",
+            '>', "&gt;",
+            '&', "&amp;"
+    );
+
     public static void main(String[] args) throws IOException {
         MyScanner scanner = new MyScanner(new File(args[0]),StandardCharsets.UTF_8);
-        String in = scanner.readAll()+"\n";
+        String in = scanner.readAll(specialHtml)+"\n";
         Document doc = parse(in);
         scanner.close();
         FileWriter fw = new FileWriter(args[1]);
@@ -104,15 +115,33 @@ public class Md2Html {
                 }
                 if (p == end.length()) {
                     isEnd = true;
+                    if (old=='\\' && end.length()==1) {
+                        return null;
+                    }
                     if (end.equals("\n\n")) {
                         text.setLength(text.length()-1);
                     }
                     break;
                 }
 
+
                 if (c == '*' || c == '_') {
                     scanner.saveState();
-                    Object emph = parseEmphasis(String.valueOf(c));
+
+                    char nc = scanner.nextChar();
+                    String ending = String.valueOf(c);
+                    if (nc == c) {
+                        ending+=c;
+                    } else {
+                        scanner.reset();
+                        scanner.saveState();
+                    }
+                    Object emph = null;
+                    if (ending.length() > 1) {
+                        emph = parseStrong(ending);
+                    } else {
+                        emph = parseEmphasis(ending);
+                    }
                     if (emph != null) {
                         content.add(new Text(text.toString()));
                         content.add(emph);
@@ -120,6 +149,10 @@ public class Md2Html {
                         scanner.dropState();
                     } else {
                         scanner.reset();
+                        boolean isAdding = !reservedSymbols.contains(c) && ending.length()<2;
+                        if (isAdding) {
+                            text.append(c);
+                        }
                     }
                 } else {
                     if (c == '`') {
@@ -134,9 +167,43 @@ public class Md2Html {
                             scanner.reset();
                         }
                     } else {
-                        boolean isAdding = !(c==old && c == '\n') && !reservedSymbols.contains(c);
-                        if (isAdding) {
-                            text.append(c);
+                        if (c == '-') {
+                            scanner.saveState();
+                            char nc = scanner.nextChar();
+                            if (nc == c) {
+                                Object strike = parseStrikeout("--");
+                                if (strike != null) {
+                                    content.add(new Text(text.toString()));
+                                    content.add(strike);
+                                    text.setLength(0);
+                                    scanner.dropState();
+                                } else {
+                                    scanner.reset();
+                                }
+                            } else {
+                                scanner.reset();
+                                boolean isAdding = !reservedSymbols.contains(c);
+                                if (isAdding) {
+                                    text.append(c);
+                                }
+                            }
+                        } else {
+                            if (c=='\\') {
+                                scanner.saveState();
+                                char nc = scanner.nextChar();
+                                scanner.reset();
+                                if (!markup.contains(nc)) {
+                                    boolean isAdding = !reservedSymbols.contains(c);
+                                    if (isAdding) {
+                                        text.append(c);
+                                    }
+                                }
+                            } else {
+                                boolean isAdding = !(c == old && c == '\n') && !reservedSymbols.contains(c);
+                                if (isAdding) {
+                                    text.append(c);
+                                }
+                            }
                         }
                     }
                 }
@@ -189,12 +256,12 @@ public class Md2Html {
             }
         }
 
-        private Strong parseStrikeout(String end) throws IOException {
+        private Strikeout parseStrikeout(String end) throws IOException {
             Object strike = parseContent(end);
             if (strike == null) {
                 return null;
             } else {
-                return new Strong((List<Markable>) strike);
+                return new Strikeout((List<Markable>) strike);
             }
         }
 

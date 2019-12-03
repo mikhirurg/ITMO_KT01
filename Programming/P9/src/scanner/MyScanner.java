@@ -2,6 +2,7 @@ package scanner;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.Map;
 import java.util.Stack;
 
 public class MyScanner {
@@ -142,6 +143,19 @@ public class MyScanner {
         StringBuilder builder = new StringBuilder();
         while (hasNextChar()) {
             builder.append(nextChar());
+        }
+        return builder.toString();
+    }
+
+    public String readAll(Map<Character, String> replace) throws IOException {
+        StringBuilder builder = new StringBuilder();
+        while (hasNextChar()) {
+            char c = nextChar();
+            if (replace.containsKey(c)) {
+                builder.append(replace.get(c));
+            } else {
+                builder.append(c);
+            }
         }
         return builder.toString();
     }
