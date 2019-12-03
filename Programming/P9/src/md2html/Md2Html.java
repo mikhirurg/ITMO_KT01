@@ -1,13 +1,32 @@
-package parser;
+package md2html;
 
 import markup.*;
 import scanner.MyScanner;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Md2Html {
+
+    private static Set<Character> reservedSymbols = Set.of(
+        '\0', '\r'
+    );
+
+    public static void main(String[] args) throws IOException {
+        MyScanner scanner = new MyScanner(new File(args[0]),StandardCharsets.UTF_8);
+        String in = scanner.readAll()+"\n";
+        Document doc = parse(in);
+        scanner.close();
+        FileWriter fw = new FileWriter(args[1]);
+        StringBuilder result = new StringBuilder();
+        doc.toHtml(result);
+        fw.write(result.toString());
+        fw.close();
+    }
+
     public static Document parse(String md) throws IOException {
         return new Document((List<Htmlable>) new Parser2(md).parse());
     }
@@ -17,7 +36,6 @@ public class Md2Html {
         private int pos;
 
         Parser2(final String data) {
-            //Create new scanner from data string adding ending symbols "\0\0"
             this.scanner = new MyScanner(data+"\0\0");
         }
 
@@ -25,9 +43,8 @@ public class Md2Html {
             boolean isEnd = false;
             int p = 0;
             List<Object> content = new ArrayList<>();
-            String seq = "\0\0";
+            String seq = "\0";
             while (scanner.hasNextChar()) {
-                scanner.saveState();
                 char c = scanner.nextChar();
                 if (c==seq.charAt(p)) {
                     p++;
@@ -38,6 +55,7 @@ public class Md2Html {
                     break;
                 }
                 if (c == '#') {
+                    scanner.saveState();
                     int level = 0;
                     while (c == '#') {
                         c = scanner.nextChar();
@@ -47,11 +65,15 @@ public class Md2Html {
                         content.add(parseHeader("\n\n", level));
                     } else {
                         scanner.reset();
+                        scanner.movePos(-1);
+                        content.add(parseParagraph("\n\n"));
                     }
                 } else {
                     if (c!='\n' && c != '\0') {
                         if (scanner.haveSavedStates()) {
                             scanner.reset();
+                        } else {
+                            scanner.movePos(-1);
                         }
                         content.add(parseParagraph("\n\n"));
                     } else {
@@ -112,7 +134,7 @@ public class Md2Html {
                             scanner.reset();
                         }
                     } else {
-                        boolean isAdding = !(c==old && c == '\n');
+                        boolean isAdding = !(c==old && c == '\n') && !reservedSymbols.contains(c);
                         if (isAdding) {
                             text.append(c);
                         }

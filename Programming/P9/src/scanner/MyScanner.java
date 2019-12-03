@@ -15,6 +15,7 @@ public class MyScanner {
     private int savedPos = 0;
     private int savedLen = 0;
 
+
     interface TokenWorker {
         void skip() throws IOException;
         boolean append(StringBuilder b, Character c) throws IOException;
@@ -101,11 +102,11 @@ public class MyScanner {
         br = new BufferedReader(new StringReader(string));
     }
 
-    MyScanner(File f, Charset chset) throws FileNotFoundException {
+    public MyScanner(File f, Charset chset) throws FileNotFoundException {
         br = new BufferedReader(new InputStreamReader(new FileInputStream(f), chset));
     }
 
-    MyScanner(File f) throws FileNotFoundException, UnsupportedEncodingException {
+    public MyScanner(File f) throws FileNotFoundException, UnsupportedEncodingException {
         String basicCharset = "UTF-8";
         br = new BufferedReader(new InputStreamReader(new FileInputStream(f), basicCharset));
     }
@@ -125,6 +126,9 @@ public class MyScanner {
         if (pos >= len) {
             readBuffer();
         }
+        if (getChar() == '\r') {
+            pos++;
+        }
         return buffer[pos++];
     }
 
@@ -132,6 +136,14 @@ public class MyScanner {
         nextChar();
         pos--;
         return !EOF;
+    }
+
+    public String readAll() throws IOException {
+        StringBuilder builder = new StringBuilder();
+        while (hasNextChar()) {
+            builder.append(nextChar());
+        }
+        return builder.toString();
     }
 
     boolean hasNext() throws IOException {
@@ -220,12 +232,20 @@ public class MyScanner {
         return pos;
     }
 
+    public void movePos(int shift) {
+        pos += shift;
+    }
+
     public void saveState() {
         savedStations.push(new State(pos, len, EOF, nLine));
     }
 
     public void dropState() {
         savedStations.pop();
+    }
+
+    public void deleteStates() {
+        savedStations.clear();
     }
 
     public boolean haveSavedStates() {

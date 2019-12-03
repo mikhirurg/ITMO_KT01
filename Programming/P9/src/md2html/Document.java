@@ -1,4 +1,4 @@
-package parser;
+package md2html;
 
 import markup.Htmlable;
 
