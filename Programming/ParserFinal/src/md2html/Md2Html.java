@@ -155,7 +155,6 @@ public class Md2Html {
                     isEnd = true;
                     break;
                 }
-                //if (!end.equals("`")) {
                     switch (c) {
                         case '*':
                         case '_':
@@ -218,12 +217,42 @@ public class Md2Html {
                             nc = scanner.nextChar();
                             appendChar(text, nc);
                             break;
+                        case '+':
+                            scanner.saveState();
+                            nc = scanner.nextChar();
+                            if (nc == c) {
+                                Object underline = parseUnderLine("++");
+                                if (underline != null) {
+                                    content.add(new Text(text.toString()));
+                                    content.add(underline);
+                                    text.setLength(0);
+                                    scanner.dropState();
+                                } else {
+                                    scanner.movePos(-1);
+                                    scanner.reset();
+                                    appendChar(text, c);
+                                }
+                            } else {
+                                scanner.reset();
+                                appendChar(text, c);
+                            }
+                            break;
+                        case '~':
+                            scanner.saveState();
+                            Object mark = parseMark("~");
+                            if (mark != null) {
+                                content.add(new Text(text.toString()));
+                                content.add(mark);
+                                text.setLength(0);
+                                scanner.dropState();
+                            } else {
+                                scanner.reset();
+                                appendChar(text, c);
+                            }
+                            break;
                         default:
                             appendChar(text, c);
                     }
-//                } else {
-//                    appendChar(text, c);
-//                }
             }
             if (!isEnd) {
                 return null;
@@ -260,6 +289,26 @@ public class Md2Html {
                 return new Strong((List<Markable>) strong);
             }
         }
+
+        private Underline parseUnderLine(String end) throws IOException {
+            Object underline = parseContent(end);
+            if (underline == null) {
+                return null;
+            } else {
+                return new Underline((List<Markable>) underline);
+            }
+        }
+
+        private Mark parseMark(String end) throws IOException {
+            Object mark = parseContent(end);
+            if (mark == null) {
+                return null;
+            } else {
+                return new Mark((List<Markable>) mark);
+            }
+        }
+
+
 
         private Emphasis parseEmphasis(String end) throws IOException {
             Object emph = parseContent(end);

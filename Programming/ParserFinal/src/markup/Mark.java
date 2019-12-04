@@ -2,27 +2,29 @@ package markup;
 
 import java.util.List;
 
-public class Underline extends AbstractMarkup{
-    public Underline(List<Markable> content) {
+public class Mark extends AbstractMarkup {
+
+    public Mark(List<Markable> content) {
         super(content);
     }
+
     @Override
     public void toMarkdown(StringBuilder build) {
-        build.append("++");
+        build.append("~~");
         super.toMarkdown(build);
-        build.append("++");
+        build.append("~~");
     }
 
     @Override
     public void toHtml(StringBuilder build) {
-        build.append("<u>");
+        build.append("<mark>");
         super.toHtml(build);
-        build.append("</u>");
+        build.append("</mark>");
     }
 
     @Override
     public void toTex(StringBuilder build) {
-        build.append("\\underline{");
+        build.append("\\hl{");
         super.toTex(build);
         build.append("}");
     }
