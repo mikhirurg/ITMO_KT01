@@ -193,6 +193,19 @@ public class Md2Html {
                                 appendChar(text, c);
                             }
                             break;
+                        case '[':
+                            scanner.saveState();
+                            Object link = parseLink();
+                            if (link != null) {
+                                content.add(new Text(text.toString()));
+                                content.add(link);
+                                text.setLength(0);
+                                scanner.dropState();
+                            } else {
+                                scanner.reset();
+                                appendChar(text, c);
+                            }
+                            break;
                         case '-':
                             scanner.saveState();
                             nc = scanner.nextChar();
@@ -261,6 +274,34 @@ public class Md2Html {
                 content.add(new Text(text.toString()));
             }
             return content;
+        }
+
+        private Object parseLink() throws IOException {
+            Object linkText = parseContent("]");
+            if (linkText == null) {
+                return null;
+            } else {
+                String href = parseLinkUrl();
+                if (href == null) {
+                    return null;
+                }
+                return new Link(href, (List<Markable>) linkText);
+            }
+        }
+
+        private String parseLinkUrl() throws IOException {
+            if (!scanner.hasNextChar() || scanner.nextChar() != '(') {
+                return null;
+            }
+            char c = '\0';
+            StringBuffer url = new StringBuffer();
+            while(scanner.hasNextChar() && (c = scanner.nextChar()) != ')') {
+                url.append(c);
+            }
+            if (c != ')') {
+                return null;
+            }
+            return url.toString();
         }
 
         private Paragraph parseParagraph(String end) throws IOException {
