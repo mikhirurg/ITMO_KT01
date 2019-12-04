@@ -95,7 +95,7 @@ public class StackScanner {
         return !EOF;
     }
 
-    public String readAll(Map<Character, String> replace) throws IOException {
+    public StringBuilder readAll(Map<Character, String> replace) throws IOException {
         StringBuilder builder = new StringBuilder();
         while (hasNextChar()) {
             char c = nextChar();
@@ -105,7 +105,7 @@ public class StackScanner {
                 builder.append(c);
             }
         }
-        return builder.toString();
+        return builder;
     }
 
 
