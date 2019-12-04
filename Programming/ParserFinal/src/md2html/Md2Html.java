@@ -23,8 +23,8 @@ public class Md2Html {
 
     public static void main(String[] args) throws IOException {
         StackScanner scanner = new StackScanner(new File(args[0]), StandardCharsets.UTF_8);
-        String in = scanner.readAll(specialHtml) + "\n";
-        Document doc = parse(in);
+        StringBuilder builder = scanner.readAll(specialHtml);
+        Document doc = parse(builder);
         scanner.close();
         FileWriter fw = new FileWriter(args[1]);
         StringBuilder result = new StringBuilder();
@@ -33,29 +33,32 @@ public class Md2Html {
         fw.close();
     }
 
-    public static Document parse(String md) throws IOException {
+    public static Document parse(StringBuilder md) throws IOException {
         return new Document(new Parser(md).parse());
     }
 
     static class Parser {
         private StackScanner scanner;
-        private String data;
+        private StringBuilder data;
 
-        Parser(String data) {
+        Parser(StringBuilder data) {
             this.data = data;
         }
 
         List<Htmlable> parse() throws IOException {
             List<Htmlable> content = new ArrayList<>();
-            List<String> blocks;
-            data = trimLine(data);
+            trimLine(data);
+            int pos = 0;
+            while (pos < data.length()) {
+                int npos = data.indexOf("\n\n", pos);
+                if (npos == -1) npos = data.length();
+                String text = data.substring(pos, npos);
+                pos = npos + 2;
 
-            blocks = Arrays.asList(data.split("\n\n"));
-
-            for (String text : blocks) {
                 if (text.length() == 0) {
                     continue;
                 }
+
                 text = trimLine(text);
                 text += "\0\0";
                 scanner = new StackScanner(text);
@@ -89,18 +92,23 @@ public class Md2Html {
             return content;
         }
 
-        private String trimLine(String data) {
+        private void trimLine(StringBuilder data) {
             int s = 0;
             while (s < data.length() && data.charAt(s) == '\n') {
                 s++;
             }
-            data = data.substring(s);
+            data.delete(0, s);
             int e = data.length() - 1;
             while (e >= 0 && data.charAt(e) == '\n') {
                 e--;
             }
-            data = data.substring(0, e + 1);
-            return data;
+            data.delete(e + 1, data.length());
+        }
+
+        private String trimLine(String data) {
+            StringBuilder builder = new StringBuilder(data);
+            trimLine(builder);
+            return builder.toString();
         }
 
         private boolean checkEnding(String end, char ch) throws IOException {
