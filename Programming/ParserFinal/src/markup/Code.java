@@ -2,10 +2,10 @@ package markup;
 
 import java.util.List;
 
-public class Code implements ParagraphElements {
-    private List<Markable> content;
+public class Code implements ParagraphElement {
+    private List<ParagraphElement> content;
 
-    public Code(List<Markable> content) {
+    public Code(List<ParagraphElement> content) {
         this.content = content;
     }
 

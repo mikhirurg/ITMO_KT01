@@ -2,10 +2,10 @@ package markup;
 
 import java.util.List;
 
-public abstract class AbstractMarkup implements ParagraphElements {
-    private List<Markable> content;
+public abstract class AbstractMarkup implements ParagraphElement {
+    private List<ParagraphElement> content;
 
-    AbstractMarkup(List<Markable> content) {
+    AbstractMarkup(List<ParagraphElement> content) {
         this.content = content;
     }
 

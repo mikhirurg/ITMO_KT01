@@ -2,17 +2,13 @@ package markup;
 
 import java.util.List;
 
-public class Link implements ParagraphElements {
-    private List<Markable> content;
+public class Link implements ParagraphElement {
+    private List<ParagraphElement> content;
     private String href;
 
-    public Link(String href, List<Markable> content) {
+    public Link(String href, List<ParagraphElement> content) {
         this.content = content;
         this.href = href;
-    }
-
-    public String getHref() {
-        return href;
     }
 
     @Override

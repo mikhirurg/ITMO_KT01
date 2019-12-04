@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Strong extends AbstractMarkup {
 
-    public Strong(List<Markable> content) {
+    public Strong(List<ParagraphElement> content) {
         super(content);
     }
 

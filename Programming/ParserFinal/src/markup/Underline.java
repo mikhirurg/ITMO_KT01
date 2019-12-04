@@ -3,7 +3,7 @@ package markup;
 import java.util.List;
 
 public class Underline extends AbstractMarkup{
-    public Underline(List<Markable> content) {
+    public Underline(List<ParagraphElement> content) {
         super(content);
     }
     @Override

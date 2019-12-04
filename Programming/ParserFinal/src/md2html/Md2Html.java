@@ -1,7 +1,7 @@
 package md2html;
 
 import markup.*;
-import scanner.MyScanner;
+import scanner.StackScanner;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,18 +12,18 @@ import java.util.*;
 public class Md2Html {
 
     private static Set<Character> reservedSymbols = Set.of(
-        '\0', '\r'
+            '\0', '\r'
     );
 
-    private static Map<Character,String> specialHtml = Map.of(
-            '<' , "&lt;",
+    private static Map<Character, String> specialHtml = Map.of(
+            '<', "&lt;",
             '>', "&gt;",
             '&', "&amp;"
     );
 
     public static void main(String[] args) throws IOException {
-        MyScanner scanner = new MyScanner(new File(args[0]),StandardCharsets.UTF_8);
-        String in = scanner.readAll(specialHtml)+"\n";
+        StackScanner scanner = new StackScanner(new File(args[0]), StandardCharsets.UTF_8);
+        String in = scanner.readAll(specialHtml) + "\n";
         Document doc = parse(in);
         scanner.close();
         FileWriter fw = new FileWriter(args[1]);
@@ -34,19 +34,19 @@ public class Md2Html {
     }
 
     public static Document parse(String md) throws IOException {
-        return new Document((List<Htmlable>) new Parser2(md).parse());
+        return new Document(new Parser(md).parse());
     }
-    static class Parser2 {
-        private MyScanner scanner;
-        private String data;
-        private int pos;
 
-        Parser2(String data) {
+    static class Parser {
+        private StackScanner scanner;
+        private String data;
+
+        Parser(String data) {
             this.data = data;
         }
 
-        Object parse() throws IOException {
-            List<Object> content = new ArrayList<>();
+        List<Htmlable> parse() throws IOException {
+            List<Htmlable> content = new ArrayList<>();
             List<String> blocks;
             data = trimLine(data);
 
@@ -57,8 +57,8 @@ public class Md2Html {
                     continue;
                 }
                 text = trimLine(text);
-                text+="\0\0";
-                scanner = new MyScanner(text);
+                text += "\0\0";
+                scanner = new StackScanner(text);
                 while (scanner.hasNextChar()) {
                     char c = scanner.nextChar();
                     if (c == '#') {
@@ -69,13 +69,11 @@ public class Md2Html {
                             level++;
                         }
                         if (c == ' ' && level <= 6) {
-                            content.add(parseHeader("\0\0", level));
-                            scanner.dropAll();
+                            content.add(parseHeader(level));
                         } else {
                             scanner.reset();
                             scanner.movePos(-1);
-                            content.add(parseParagraph("\0\0"));
-                            scanner.dropAll();
+                            content.add(parseParagraph());
                         }
                     } else {
                         if (scanner.haveSavedStates()) {
@@ -83,9 +81,9 @@ public class Md2Html {
                         } else {
                             scanner.movePos(-1);
                         }
-                        content.add(parseParagraph("\0\0"));
-                        scanner.dropAll();
+                        content.add(parseParagraph());
                     }
+                    scanner.dropAll();
                 }
             }
             return content;
@@ -98,7 +96,7 @@ public class Md2Html {
             }
             data = data.substring(s);
             int e = data.length() - 1;
-            while (e  >= 0 && data.charAt(e) == '\n') {
+            while (e >= 0 && data.charAt(e) == '\n') {
                 e--;
             }
             data = data.substring(0, e + 1);
@@ -144,10 +142,9 @@ public class Md2Html {
             }
         }
 
-        private Object parseContent(String end) throws IOException {
+        private List<ParagraphElement> parseContent(String end) throws IOException {
             boolean isEnd = false;
-            int pos = 0;
-            List<Object> content = new ArrayList<>();
+            List<ParagraphElement> content = new ArrayList<>();
             StringBuilder text = new StringBuilder();
             while (scanner.hasNextChar()) {
                 char c = scanner.nextChar();
@@ -155,117 +152,65 @@ public class Md2Html {
                     isEnd = true;
                     break;
                 }
-                    switch (c) {
-                        case '*':
-                        case '_':
-                            scanner.saveState();
-                            char nc = scanner.nextChar();
-                            String ending = String.valueOf(c);
-                            if (nc == c) {
-                                ending += nc;
-                            } else {
-                                scanner.movePos(-1);
-                            }
+                switch (c) {
+                    case '*':
+                    case '_':
+                        scanner.saveState();
+                        char nc = scanner.nextChar();
+                        String ending = String.valueOf(c);
+                        if (nc == c) {
+                            ending += nc;
+                        } else {
+                            scanner.movePos(-1);
+                        }
 
-
-                            Object emphasis = ending.length() > 1 ? parseStrong(ending) : parseEmphasis(ending);
-
-                            if (emphasis != null) {
-                                content.add(new Text(text.toString()));
-                                content.add(emphasis);
-                                text.setLength(0);
-                                scanner.dropState();
-                            } else {
-                                scanner.reset();
-                                appendChar(text, c);
-                            }
-                            break;
-                        case '`':
-                            scanner.saveState();
-                            Object code = parseCode(String.valueOf(c));
-                            if (code != null) {
-                                content.add(new Text(text.toString()));
-                                content.add(code);
-                                text.setLength(0);
-                                scanner.dropState();
-                            } else {
-                                scanner.reset();
-                                appendChar(text, c);
-                            }
-                            break;
-                        case '[':
-                            scanner.saveState();
-                            Object link = parseLink();
-                            if (link != null) {
-                                content.add(new Text(text.toString()));
-                                content.add(link);
-                                text.setLength(0);
-                                scanner.dropState();
-                            } else {
-                                scanner.reset();
-                                appendChar(text, c);
-                            }
-                            break;
-                        case '-':
-                            scanner.saveState();
-                            nc = scanner.nextChar();
-                            if (nc == c) {
-                                Object strike = parseStrikeout("--");
-                                if (strike != null) {
-                                    content.add(new Text(text.toString()));
-                                    content.add(strike);
-                                    text.setLength(0);
-                                    scanner.dropState();
-                                } else {
-                                    scanner.movePos(-1);
-                                    scanner.reset();
-                                    appendChar(text, c);
-                                }
-                            } else {
-                                scanner.reset();
-                                appendChar(text, c);
-                            }
-                            break;
-                        case '\\':
-                            nc = scanner.nextChar();
-                            appendChar(text, nc);
-                            break;
-                        case '+':
-                            scanner.saveState();
-                            nc = scanner.nextChar();
-                            if (nc == c) {
-                                Object underline = parseUnderLine("++");
-                                if (underline != null) {
-                                    content.add(new Text(text.toString()));
-                                    content.add(underline);
-                                    text.setLength(0);
-                                    scanner.dropState();
-                                } else {
-                                    scanner.movePos(-1);
-                                    scanner.reset();
-                                    appendChar(text, c);
-                                }
-                            } else {
-                                scanner.reset();
-                                appendChar(text, c);
-                            }
-                            break;
-                        case '~':
-                            scanner.saveState();
-                            Object mark = parseMark("~");
-                            if (mark != null) {
-                                content.add(new Text(text.toString()));
-                                content.add(mark);
-                                text.setLength(0);
-                                scanner.dropState();
-                            } else {
-                                scanner.reset();
-                                appendChar(text, c);
-                            }
-                            break;
-                        default:
+                        ParagraphElement emphasis = ending.length() > 1 ? parseStrong(ending) : parseEmphasis(ending);
+                        verify(emphasis, text, c, content, 0);
+                        break;
+                    case '`':
+                        scanner.saveState();
+                        ParagraphElement code = parseCode(String.valueOf(c));
+                        verify(code, text, c, content, 0);
+                        break;
+                    case '[':
+                        scanner.saveState();
+                        ParagraphElement link = parseLink();
+                        verify(link, text, c, content, 0);
+                        break;
+                    case '-':
+                        scanner.saveState();
+                        nc = scanner.nextChar();
+                        if (nc == c) {
+                            ParagraphElement strike = parseStrikeout();
+                            verify(strike, text, c, content, -1);
+                        } else {
+                            scanner.reset();
                             appendChar(text, c);
-                    }
+                        }
+                        break;
+                    case '\\':
+                        nc = scanner.nextChar();
+                        appendChar(text, nc);
+                        break;
+                    case '+':
+                        scanner.saveState();
+                        nc = scanner.nextChar();
+                        if (nc == c) {
+                            ParagraphElement underline = parseUnderLine();
+                            verify(underline, text, c, content, -1);
+                        } else {
+                            scanner.reset();
+                            appendChar(text, c);
+                        }
+                        break;
+                    case '~':
+                        scanner.saveState();
+                        ParagraphElement mark = parseMark();
+                        verify(mark, text, c, content, 0);
+                        break;
+                    default:
+                        appendChar(text, c);
+                }
             }
             if (!isEnd) {
                 return null;
@@ -276,8 +221,22 @@ public class Md2Html {
             return content;
         }
 
-        private Object parseLink() throws IOException {
-            Object linkText = parseContent("]");
+        private void verify(ParagraphElement element, StringBuilder text, char c,
+                            List<ParagraphElement> content, int move) {
+            if (element != null) {
+                content.add(new Text(text.toString()));
+                content.add(element);
+                text.setLength(0);
+                scanner.dropState();
+            } else {
+                scanner.movePos(move);
+                scanner.reset();
+                appendChar(text, c);
+            }
+        }
+
+        private ParagraphElement parseLink() throws IOException {
+            List<ParagraphElement> linkText = parseContent("]");
             if (linkText == null) {
                 return null;
             } else {
@@ -285,7 +244,7 @@ public class Md2Html {
                 if (href == null) {
                     return null;
                 }
-                return new Link(href, (List<Markable>) linkText);
+                return new Link(href, linkText);
             }
         }
 
@@ -294,8 +253,8 @@ public class Md2Html {
                 return null;
             }
             char c = '\0';
-            StringBuffer url = new StringBuffer();
-            while(scanner.hasNextChar() && (c = scanner.nextChar()) != ')') {
+            StringBuilder url = new StringBuilder();
+            while (scanner.hasNextChar() && (c = scanner.nextChar()) != ')') {
                 url.append(c);
             }
             if (c != ')') {
@@ -304,82 +263,77 @@ public class Md2Html {
             return url.toString();
         }
 
-        private Paragraph parseParagraph(String end) throws IOException {
-            Object par = parseContent(end);
+        private Paragraph parseParagraph() throws IOException {
+            List<ParagraphElement> par = parseContent("\0\0");
             if (par == null) {
                 return null;
             } else {
-                return new Paragraph((List<ParagraphElements>) par);
+                return new Paragraph(par);
             }
         }
 
-        private Header parseHeader(String end, int level) throws IOException {
-            Object head = parseContent(end);
+        private Header parseHeader(int level) throws IOException {
+            List<ParagraphElement> head = parseContent("\0\0");
             if (head == null) {
                 return null;
             } else {
-                return new Header((List<ParagraphElements>) head, level);
+                return new Header(head, level);
             }
         }
 
         private Strong parseStrong(String end) throws IOException {
-            Object strong = parseContent(end);
+            List<ParagraphElement> strong = parseContent(end);
             if (strong == null) {
                 return null;
             } else {
-                return new Strong((List<Markable>) strong);
+                return new Strong(strong);
             }
         }
 
-        private Underline parseUnderLine(String end) throws IOException {
-            Object underline = parseContent(end);
+        private Underline parseUnderLine() throws IOException {
+            List<ParagraphElement> underline = parseContent("++");
             if (underline == null) {
                 return null;
             } else {
-                return new Underline((List<Markable>) underline);
+                return new Underline(underline);
             }
         }
 
-        private Mark parseMark(String end) throws IOException {
-            Object mark = parseContent(end);
+        private Mark parseMark() throws IOException {
+            List<ParagraphElement> mark = parseContent("~");
             if (mark == null) {
                 return null;
             } else {
-                return new Mark((List<Markable>) mark);
+                return new Mark(mark);
             }
         }
-
 
 
         private Emphasis parseEmphasis(String end) throws IOException {
-            Object emph = parseContent(end);
+            List<ParagraphElement> emph = parseContent(end);
             if (emph == null) {
                 return null;
             } else {
-                return new Emphasis((List<Markable>) emph);
+                return new Emphasis(emph);
             }
         }
 
-        private Strikeout parseStrikeout(String end) throws IOException {
-            Object strike = parseContent(end);
+        private Strikeout parseStrikeout() throws IOException {
+            List<ParagraphElement> strike = parseContent("--");
             if (strike == null) {
                 return null;
             } else {
-                return new Strikeout((List<Markable>) strike);
+                return new Strikeout(strike);
             }
         }
 
         private Code parseCode(final String end) throws IOException {
-            Object emph = parseContent(end);
-            if (emph == null) {
+            List<ParagraphElement> code = parseContent(end);
+            if (code == null) {
                 return null;
             } else {
-                return new Code((List<Markable>) emph);
+                return new Code(code);
             }
-        }
-
-        private MDException error(final String message) {
-            return new MDException(scanner.getPos() + ": " + message);
         }
 
     }

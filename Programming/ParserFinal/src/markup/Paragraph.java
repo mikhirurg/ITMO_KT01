@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Paragraph implements Markable, ListItemElement, Htmlable {
 
-    private List<ParagraphElements> content;
+    private List<ParagraphElement> content;
 
-    public Paragraph(List<ParagraphElements> content) {
+    public Paragraph(List<ParagraphElement> content) {
         this.content = content;
     }
 
     @Override
     public void toMarkdown(StringBuilder build) {
-        for (ParagraphElements e : content) {
+        for (ParagraphElement e : content) {
             e.toMarkdown(build);
         }
     }
@@ -20,7 +20,7 @@ public class Paragraph implements Markable, ListItemElement, Htmlable {
     @Override
     public void toHtml(StringBuilder build) {
         build.append("<p>");
-        for (ParagraphElements e : content) {
+        for (ParagraphElement e : content) {
             e.toHtml(build);
         }
         build.append("</p>\n");
@@ -28,7 +28,7 @@ public class Paragraph implements Markable, ListItemElement, Htmlable {
 
     @Override
     public void toTex(StringBuilder build) {
-        for (ParagraphElements e : content) {
+        for (ParagraphElement e : content) {
             e.toTex(build);
         }
     }

@@ -1,14 +1,10 @@
 package markup;
 
-public class Text implements ParagraphElements {
+public class Text implements ParagraphElement {
     private String text;
 
     public Text(String text) {
         this.text = text;
-    }
-
-    public String getText() {
-        return text;
     }
 
     public void append(String str) {

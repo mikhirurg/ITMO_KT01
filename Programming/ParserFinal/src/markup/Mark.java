@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Mark extends AbstractMarkup {
 
-    public Mark(List<Markable> content) {
+    public Mark(List<ParagraphElement> content) {
         super(content);
     }
 
