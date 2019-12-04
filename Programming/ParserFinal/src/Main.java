@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Main {
     private static List<String> test = List.of(
-
+            "[ссылок с _выделением_](https://kgeorgiy.info)",
 
             "\n\n\nЛишние пустые строки должны игнорироваться.\n\n\n\n",
             "\\*.",
