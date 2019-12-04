@@ -5,10 +5,7 @@ import scanner.MyScanner;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Md2Html {
 
@@ -42,134 +39,138 @@ public class Md2Html {
         return new Document((List<Htmlable>) new Parser2(md).parse());
     }
     static class Parser2 {
-        private final MyScanner scanner;
-        private char ch;
+        private MyScanner scanner;
+        private final String data;
         private int pos;
 
         Parser2(final String data) {
-            this.scanner = new MyScanner(data+"\0\0");
+            this.data = data;
         }
 
         Object parse() throws IOException {
-            boolean isEnd = false;
-            int p = 0;
             List<Object> content = new ArrayList<>();
-            String seq = "\0";
-            while (scanner.hasNextChar()) {
-                char c = scanner.nextChar();
-                if (c==seq.charAt(p)) {
-                    p++;
-                } else {
-                    p = 0;
-                }
-                if (p == seq.length()) {
-                    break;
-                }
-                if (c == '#') {
-                    scanner.saveState();
-                    int level = 0;
-                    while (c == '#') {
-                        c = scanner.nextChar();
-                        level++;
-                    }
-                    if (c == ' ' && level <= 6) {
-                        content.add(parseHeader("\n\n", level));
+            List<String> blocks;
+            blocks = Arrays.asList(data.split("\n\n"));
+
+            for (String text : blocks) {
+                text+="\0\0";
+                scanner = new MyScanner(text);
+                while (scanner.hasNextChar()) {
+                    char c = scanner.nextChar();
+                    if (c == '#') {
+                        scanner.saveState();
+                        int level = 0;
+                        while (c == '#') {
+                            c = scanner.nextChar();
+                            level++;
+                        }
+                        if (c == ' ' && level <= 6) {
+                            content.add(parseHeader("\0\0", level));
+                            scanner.dropAll();
+                        } else {
+                            scanner.reset();
+                            scanner.movePos(-1);
+                            content.add(parseParagraph("\0\0"));
+                            scanner.dropAll();
+                        }
                     } else {
-                        scanner.reset();
-                        scanner.movePos(-1);
-                        content.add(parseParagraph("\n\n"));
-                    }
-                } else {
-                    if (c!='\n' && c != '\0') {
                         if (scanner.haveSavedStates()) {
                             scanner.reset();
                         } else {
                             scanner.movePos(-1);
                         }
-                        content.add(parseParagraph("\n\n"));
-                    } else {
-                        if (scanner.haveSavedStates()) {
-                            scanner.dropState();
-                            scanner.saveState();
-                        } else {
-                            scanner.saveState();
-                        }
+                        content.add(parseParagraph("\0\0"));
+                        scanner.dropAll();
                     }
                 }
             }
             return content;
         }
 
-        private Object parseContent(String end) throws IOException {
-            boolean isEnd = false;
-            int p = 0;
-            List<Object> content = new ArrayList<>();
-            StringBuilder text = new StringBuilder();
-            char old = '\0';
-            while (scanner.hasNextChar()) {
-                char c = scanner.nextChar();
-                if (c == end.charAt(p)) {
-                    p++;
-                } else {
-                    p = 0;
-                }
-                if (p == end.length()) {
-                    isEnd = true;
-                    if (old=='\\' && end.length()==1) {
-                        return null;
-                    }
-                    if (end.equals("\n\n")) {
-                        text.setLength(text.length()-1);
-                    }
+        private boolean checkEnding(String end, char ch) throws IOException {
+            if (scanner.getPrev() == '\\') {
+                return false;
+            }
+            scanner.saveState();
+            char c = ch;
+            int pos = 0;
+            while (scanner.hasNextChar() && c == end.charAt(pos)) {
+                pos++;
+                c = scanner.nextChar();
+                if (pos >= end.length()) {
                     break;
                 }
+            }
 
+            scanner.movePos(-1);
 
-                if (c == '*' || c == '_') {
-                    scanner.saveState();
+            if (pos < end.length()) {
+                scanner.reset();
+                return false;
+            } else {
+                return true;
+            }
+        }
 
-                    char nc = scanner.nextChar();
-                    String ending = String.valueOf(c);
-                    if (nc == c) {
-                        ending+=c;
-                    } else {
-                        scanner.reset();
-                        scanner.saveState();
-                    }
-                    Object emph = null;
-                    if (ending.length() > 1) {
-                        emph = parseStrong(ending);
-                    } else {
-                        emph = parseEmphasis(ending);
-                    }
-                    if (emph != null) {
-                        content.add(new Text(text.toString()));
-                        content.add(emph);
-                        text.setLength(0);
-                        scanner.dropState();
-                    } else {
-                        scanner.reset();
-                        boolean isAdding = !reservedSymbols.contains(c) && ending.length()<2;
-                        if (isAdding) {
-                            text.append(c);
-                        }
-                    }
-                } else {
-                    if (c == '`') {
-                        scanner.saveState();
-                        Object code = parseCode(String.valueOf(c));
-                        if (code != null) {
-                            content.add(new Text(text.toString()));
-                            content.add(code);
-                            text.setLength(0);
-                            scanner.dropState();
-                        } else {
-                            scanner.reset();
-                        }
-                    } else {
-                        if (c == '-') {
+        static void appendChar(StringBuilder builder, char c) {
+            boolean isAdding = !reservedSymbols.contains(c);
+            if (isAdding) {
+                builder.append(c);
+            }
+        }
+
+        private Object parseContent(String end) throws IOException {
+            boolean isEnd = false;
+            int pos = 0;
+            List<Object> content = new ArrayList<>();
+            StringBuilder text = new StringBuilder();
+            while (scanner.hasNextChar()) {
+                char c = scanner.nextChar();
+                if (checkEnding(end, c)) {
+                    isEnd = true;
+                    break;
+                }
+                if (!end.equals("`")) {
+                    switch (c) {
+                        case '*': case '_':
                             scanner.saveState();
                             char nc = scanner.nextChar();
+                            String ending = String.valueOf(c);
+                            if (nc == c) {
+                                ending += nc;
+                            } else {
+                                scanner.movePos(-1);
+                            }
+
+
+                            Object emphasis = ending.length() > 1 ? parseStrong(ending) : parseEmphasis(ending);
+
+                            if (emphasis != null) {
+                                content.add(new Text(text.toString()));
+                                content.add(emphasis);
+                                text.setLength(0);
+                                scanner.dropState();
+                            } else {
+                                scanner.reset();
+                                appendChar(text, c);
+                            }
+                            break;
+                        case '`':
+                            scanner.saveState();
+                            Object code = parseCode(String.valueOf(c));
+                            if (code != null) {
+                                content.add(new Text(text.toString()));
+                                content.add(code);
+                                text.setLength(0);
+                                scanner.dropState();
+                            } else {
+                                scanner.reset();
+                                appendChar(text, c);
+                            }
+                            break;
+                        case '-':
+                            scanner.saveState();
+                            nc = scanner.nextChar();
                             if (nc == c) {
                                 Object strike = parseStrikeout("--");
                                 if (strike != null) {
@@ -178,43 +179,33 @@ public class Md2Html {
                                     text.setLength(0);
                                     scanner.dropState();
                                 } else {
+                                    scanner.movePos(-1);
                                     scanner.reset();
+                                    appendChar(text, c);
                                 }
                             } else {
                                 scanner.reset();
-                                boolean isAdding = !reservedSymbols.contains(c);
-                                if (isAdding) {
-                                    text.append(c);
-                                }
+                                appendChar(text, c);
                             }
-                        } else {
-                            if (c=='\\') {
-                                scanner.saveState();
-                                char nc = scanner.nextChar();
-                                scanner.reset();
-                                if (!markup.contains(nc)) {
-                                    boolean isAdding = !reservedSymbols.contains(c);
-                                    if (isAdding) {
-                                        text.append(c);
-                                    }
-                                }
-                            } else {
-                                boolean isAdding = !(c == old && c == '\n') && !reservedSymbols.contains(c);
-                                if (isAdding) {
-                                    text.append(c);
-                                }
+                            break;
+                        case '\\':
+                            nc = scanner.nextChar();
+                            if (!markup.contains(nc)) {
+                                scanner.movePos(-1);
+                                appendChar(text, c);
                             }
-                        }
+                            break;
+                        default:
+                            appendChar(text, c);
                     }
+                } else {
+                    appendChar(text, c);
                 }
-                old = c;
             }
             if (!isEnd) {
-                if (!end.equals("\n\n")) {
-                    return null;
-                }
+                return null;
             }
-            if (text.length() != 0) {
+            if (text.length() > 0) {
                 content.add(new Text(text.toString()));
             }
             return content;

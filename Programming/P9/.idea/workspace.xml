@@ -2,15 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7159db8b-36cf-4296-bf97-62e14957963a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test1.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test1.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test13.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test13.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/P9.iml" beforeDir="false" afterPath="$PROJECT_DIR$/P9.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/base/Asserts.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/base/Asserts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/base/MainStdChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/base/MainStdChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/markup/Header.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/markup/Header.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/markup/Paragraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/markup/Paragraph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/parser/Document.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/parser/MDException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner$TokenParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner$TokenParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner$WordParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner$WordParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/markup/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/markup/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/markup/Paragraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/markup/Paragraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/md2html/Md2Html.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/md2html/Md2Html.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/md2html/Md2HtmlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/md2html/Md2HtmlTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scanner/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scanner/MyScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test3.in" beforeDir="false" />
     </list>
     <list id="408703e1-5f0b-42e7-bbc9-83b944141d82" name="fix text" comment="" />
-    <list id="7438df85-c984-4655-b571-84f0948039a1" name="fix2" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/markup/Emphasis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/markup/Emphasis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/MD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/MD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scanner/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scanner/MyScanner.java" afterDir="false" />
-    </list>
+    <list id="7438df85-c984-4655-b571-84f0948039a1" name="fix2" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +37,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -37,19 +54,25 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/fix2.patch" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/md2html" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="parser" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\ITMO_KT01\Programming\P9\patches" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\ITMO_KT01\Programming\P9\src\md2html" />
+      <recent name="C:\ITMO_KT01\Programming\P9\src\base" />
       <recent name="C:\Users\mikha\IdeaProjects\P9\src\parser" />
       <recent name="C:\Users\mikha\IdeaProjects\P9\src" />
       <recent name="C:\Users\mikha\IdeaProjects\P9\src\scanner" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\ITMO_KT01\Programming\P9\patches" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -64,7 +87,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="P9" />
@@ -72,9 +95,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Md2HtmlMarkTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="md2html.Md2HtmlMarkTest" />
+      <module name="P9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="md2html.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Md2HtmlTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="md2html.Md2HtmlTest" />
+      <module name="P9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="md2html.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Md2HtmlTest" />
+        <item itemvalue="Application.Md2HtmlMarkTest" />
       </list>
     </recent_temporary>
   </component>
@@ -92,8 +143,46 @@
       <updated>1574777768654</updated>
       <workItem from="1574777773719" duration="9569000" />
       <workItem from="1574791556997" duration="1210000" />
-      <workItem from="1574793531219" duration="2139000" />
+      <workItem from="1574793531219" duration="4002000" />
+      <workItem from="1575138759910" duration="19940000" />
+      <workItem from="1575310757938" duration="33344000" />
     </task>
+    <task id="LOCAL-00001" summary="001: Scanner station saver added. &#10;002: New structure added.">
+      <created>1575196153694</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575196153694</updated>
+    </task>
+    <task id="LOCAL-00002" summary="001: Parse content method added">
+      <created>1575200647133</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575200647133</updated>
+    </task>
+    <task id="LOCAL-00003" summary="001: Some fixes">
+      <created>1575238219726</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575238219726</updated>
+    </task>
+    <task id="LOCAL-00004" summary="001: Passes 10 tests">
+      <created>1575408435968</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575408435968</updated>
+    </task>
+    <task id="LOCAL-00005" summary="001: Passes 15 tests">
+      <created>1575413442756</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575413442756</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,21 +203,45 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="001: Scanner station saver added. &#10;002: New structure added." />
+    <MESSAGE value="001: Parse content method added" />
+    <MESSAGE value="001: Some fixes" />
+    <MESSAGE value="001: Passes 10 tests" />
+    <MESSAGE value="001: Passes 15 tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="001: Passes 15 tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/parser/MD.java</url>
           <line>80</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/md2html/Md2HtmlTest.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/md2html/Md2HtmlTest.java</url>
+          <line>269</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/md2html/Md2Html.java</url>
+          <line>122</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/P9$Main.ic" NAME="Main Coverage Results" MODIFIED="1575313304083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
