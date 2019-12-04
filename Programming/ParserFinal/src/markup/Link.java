@@ -39,6 +39,6 @@ public class Link implements ParagraphElements {
         for (Markable e : content) {
             e.toTex(build);
         }
-        build.append("<description>}");
+        build.append("}");
     }
 }
