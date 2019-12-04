@@ -248,7 +248,7 @@ public class Md2Html {
             if (head == null) {
                 return null;
             } else {
-                return new Header((List<Markable>) head, level);
+                return new Header((List<ParagraphElements>) head, level);
             }
         }
 

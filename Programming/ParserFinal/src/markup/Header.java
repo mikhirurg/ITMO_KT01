@@ -3,10 +3,10 @@ package markup;
 import java.util.List;
 
 public class Header implements Htmlable {
-    List<Markable> content;
+    List<ParagraphElements> content;
     int level;
 
-    public Header(List<Markable> content, int level) {
+    public Header(List<ParagraphElements> content, int level) {
         this.content = content;
         this.level = level;
     }
