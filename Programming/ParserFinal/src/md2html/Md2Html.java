@@ -208,6 +208,11 @@ public class Md2Html {
                         ParagraphElement mark = parseMark();
                         verify(mark, text, c, content, 0);
                         break;
+                    case '!':
+                        scanner.saveState();
+                        ParagraphElement image = parseImage();
+                        verify(image, text, c, content, 0);
+                        break;
                     default:
                         appendChar(text, c);
                 }
@@ -235,12 +240,28 @@ public class Md2Html {
             }
         }
 
+        private ParagraphElement parseImage() throws IOException {
+            if (!scanner.hasNextChar() || scanner.nextChar()!='[') {
+                return null;
+            }
+            char c = '\0';
+            StringBuilder alt = new StringBuilder();
+            while (scanner.hasNextChar() && (c = scanner.nextChar()) != ']') {
+                alt.append(c);
+            }
+            if (c != ']') {
+                return null;
+            }
+            String url = parseUrl();
+            return url != null ? new Image(url, alt.toString()) : null;
+        }
+
         private ParagraphElement parseLink() throws IOException {
             List<ParagraphElement> linkText = parseContent("]");
             if (linkText == null) {
                 return null;
             } else {
-                String href = parseLinkUrl();
+                String href = parseUrl();
                 if (href == null) {
                     return null;
                 }
@@ -248,7 +269,7 @@ public class Md2Html {
             }
         }
 
-        private String parseLinkUrl() throws IOException {
+        private String parseUrl() throws IOException {
             if (!scanner.hasNextChar() || scanner.nextChar() != '(') {
                 return null;
             }
