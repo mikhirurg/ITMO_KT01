@@ -29,10 +29,10 @@ public class Code implements ParagraphElement {
 
     @Override
     public void toTex(StringBuilder build) {
-        build.append("\\begin{verbatim}");
+        build.append("\\texttt{");
         for (Markable e : content) {
             e.toTex(build);
         }
-        build.append("\\end{verbatim}");
+        build.append("}");
     }
 }

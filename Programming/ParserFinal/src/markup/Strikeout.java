@@ -23,7 +23,7 @@ public class Strikeout extends AbstractMarkup {
 
     @Override
     public void toTex(StringBuilder build) {
-        build.append("\\textst{");
+        build.append("\\sout{");
         super.toTex(build);
         build.append("}");
     }

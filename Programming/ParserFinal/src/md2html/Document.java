@@ -18,4 +18,17 @@ public class Document {
         }
     }
 
+    public void toTex(StringBuilder build){
+        build.append("\\documentclass{article}\n");
+        build.append("\\usepackage[russian]{babel}\n");
+        build.append("\\usepackage{moreverb, amsfonts, amssymb, fancybox, fancyhdr, amsmath, ulem}\n");
+        build.append("\\begin{document}");
+        for (Htmlable e : content){
+            e.toTex(build);
+        }
+        build.append("\n\\end{document}");
+    }
+
+
+
 }

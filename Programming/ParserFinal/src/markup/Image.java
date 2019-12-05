@@ -30,7 +30,7 @@ public class Image implements ParagraphElement{
 
     @Override
     public void toTex(StringBuilder build) {
-        build.append("\\begin{figure}\n");
+        build.append("\n\\begin{figure}\n");
         build.append("\\centering");
         build.append("\\includegraphics[width=90mm]{");
         build.append(href);

@@ -31,7 +31,7 @@ public class Link implements ParagraphElement {
 
     @Override
     public void toTex(StringBuilder build) {
-        build.append("\\href{").append(href).append("}{");
+        build.append("\n\\href{").append(href).append("}{");
         for (Markable e : content) {
             e.toTex(build);
         }

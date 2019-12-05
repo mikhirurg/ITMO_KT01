@@ -24,7 +24,7 @@ public class Mark extends AbstractMarkup {
 
     @Override
     public void toTex(StringBuilder build) {
-        build.append("\\hl{");
+        build.append("\n\\hl{");
         super.toTex(build);
         build.append("}");
     }

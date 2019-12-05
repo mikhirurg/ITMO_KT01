@@ -1,5 +1,7 @@
 import md2html.Document;
 import md2html.Md2Html;
+import md2html.SpecialSymbols;
+import scanner.StackScanner;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,9 +43,9 @@ public class Main {
      "Выделение может *начинаться на одной строке,\n а заканчиваться* на другой"
     );
     public static void main(String[] args) throws IOException {
-	    Document d = Md2Html.parse(test.get(0));
+	    Document d = Md2Html.parse(new StringBuilder(test.get(9)), SpecialSymbols.specialTex);
 	    StringBuilder builder = new StringBuilder();
-	    d.toHtml(builder);
+	    d.toTex(builder);
         System.out.println(builder.toString());
     }
 }

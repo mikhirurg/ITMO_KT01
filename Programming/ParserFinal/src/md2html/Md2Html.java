@@ -8,23 +8,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import static md2html.SpecialSymbols.specialHtml;
+import static md2html.SpecialSymbols.reservedSymbols;
 
 public class Md2Html {
 
-    private static Set<Character> reservedSymbols = Set.of(
-            '\0', '\r'
-    );
-
-    private static Map<Character, String> specialHtml = Map.of(
-            '<', "&lt;",
-            '>', "&gt;",
-            '&', "&amp;"
-    );
-
     public static void main(String[] args) throws IOException {
         StackScanner scanner = new StackScanner(new File(args[0]), StandardCharsets.UTF_8);
-        StringBuilder builder = scanner.readAll(specialHtml);
-        Document doc = parse(builder);
+        StringBuilder builder = scanner.readAll();
+        Document doc = parse(builder, specialHtml);
         scanner.close();
         FileWriter fw = new FileWriter(args[1]);
         StringBuilder result = new StringBuilder();
@@ -33,16 +25,17 @@ public class Md2Html {
         fw.close();
     }
 
-    public static Document parse(StringBuilder md) throws IOException {
-        return new Document(new Parser(md).parse());
+    public static Document parse(StringBuilder md, Map<Character, String> replace) throws IOException {
+        return new Document(new Parser(md, replace).parse());
     }
 
     static class Parser {
         private StackScanner scanner;
         private StringBuilder data;
-
-        Parser(StringBuilder data) {
+        private static Map<Character, String> replace;
+        Parser(StringBuilder data, Map<Character, String> replace) {
             this.data = data;
+            Parser.replace = replace;
         }
 
         List<Htmlable> parse() throws IOException {
@@ -118,13 +111,10 @@ public class Md2Html {
             if (ch != end.charAt(0)) {
                 return false;
             }
-
             scanner.saveState();
             int pos = 1;
-
             while (scanner.hasNextChar() && pos < end.length()) {
                 char c = scanner.nextChar();
-
                 if (c == end.charAt(pos)) {
                     pos++;
                 } else {
@@ -144,7 +134,11 @@ public class Md2Html {
         static void appendChar(StringBuilder builder, char c) {
             boolean isAdding = !reservedSymbols.contains(c);
             if (isAdding) {
-                builder.append(c);
+                if (replace.containsKey(c)) {
+                    builder.append(replace.get(c));
+                } else {
+                    builder.append(c);
+                }
             }
         }
 

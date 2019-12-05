@@ -16,11 +16,19 @@ public class Header implements Htmlable {
         build.append("<h");
         build.append(level);
         build.append(">");
-        for (Markable e : content) {
+        for (ParagraphElement e : content) {
             e.toHtml(build);
         }
         build.append("</h");
         build.append(level);
         build.append(">\n");
+    }
+
+    public void toTex(StringBuilder build) {
+        build.append("\\section*{");
+        for (ParagraphElement e : content) {
+            e.toTex(build);
+        }
+        build.append("}");
     }
 }

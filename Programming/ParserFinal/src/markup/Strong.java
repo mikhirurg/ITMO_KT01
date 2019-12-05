@@ -24,7 +24,7 @@ public class Strong extends AbstractMarkup {
 
     @Override
     public void toTex(StringBuilder build) {
-        build.append("\\textbf{");
+        build.append("\n\\textbf{");
         super.toTex(build);
         build.append("}");
     }

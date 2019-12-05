@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class StackScanner {
     private BufferedReader br;
-    private static final int BUF_LEN = 20048576;
+    private static final int BUF_LEN = 10000000;
     private char[] buffer = new char[BUF_LEN];
     private int len;
     private int pos;
@@ -104,6 +104,15 @@ public class StackScanner {
             } else {
                 builder.append(c);
             }
+        }
+        return builder;
+    }
+
+    public StringBuilder readAll() throws IOException {
+        StringBuilder builder = new StringBuilder();
+        while (hasNextChar()) {
+            char c = nextChar();
+            builder.append(c);
         }
         return builder;
     }
