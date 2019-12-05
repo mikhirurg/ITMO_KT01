@@ -123,7 +123,6 @@ public class Md2Html {
             int pos = 1;
 
             while (scanner.hasNextChar() && pos < end.length()) {
-
                 char c = scanner.nextChar();
 
                 if (c == end.charAt(pos)) {
@@ -131,7 +130,6 @@ public class Md2Html {
                 } else {
                     break;
                 }
-
             }
 
             if (pos < end.length()) {
@@ -270,10 +268,7 @@ public class Md2Html {
                 return null;
             } else {
                 String href = parseUrl();
-                if (href == null) {
-                    return null;
-                }
-                return new Link(href, linkText);
+                return (href != null) ? new Link(href, linkText) : null;
             }
         }
 
@@ -286,83 +281,48 @@ public class Md2Html {
             while (scanner.hasNextChar() && (c = scanner.nextChar()) != ')') {
                 url.append(c);
             }
-            if (c != ')') {
-                return null;
-            }
-            return url.toString();
+            return  (c == ')') ? url.toString() : null;
         }
 
         private Paragraph parseParagraph() throws IOException {
             List<ParagraphElement> par = parseContent("\0\0");
-            if (par == null) {
-                return null;
-            } else {
-                return new Paragraph(par);
-            }
+            return (par != null) ? new Paragraph(par) : null;
         }
 
         private Header parseHeader(int level) throws IOException {
             List<ParagraphElement> head = parseContent("\0\0");
-            if (head == null) {
-                return null;
-            } else {
-                return new Header(head, level);
-            }
+            return (head != null) ? new Header(head, level) : null;
         }
 
         private Strong parseStrong(String end) throws IOException {
             List<ParagraphElement> strong = parseContent(end);
-            if (strong == null) {
-                return null;
-            } else {
-                return new Strong(strong);
-            }
+            return (strong != null) ? new Strong(strong) : null;
         }
 
         private Underline parseUnderLine() throws IOException {
             List<ParagraphElement> underline = parseContent("++");
-            if (underline == null) {
-                return null;
-            } else {
-                return new Underline(underline);
-            }
+            return (underline != null) ? new Underline(underline) : null;
         }
 
         private Mark parseMark() throws IOException {
             List<ParagraphElement> mark = parseContent("~");
-            if (mark == null) {
-                return null;
-            } else {
-                return new Mark(mark);
-            }
+            return (mark != null) ? new Mark(mark) : null;
         }
 
 
         private Emphasis parseEmphasis(String end) throws IOException {
             List<ParagraphElement> emph = parseContent(end);
-            if (emph == null) {
-                return null;
-            } else {
-                return new Emphasis(emph);
-            }
+            return (emph != null) ? new Emphasis(emph) : null;
         }
 
         private Strikeout parseStrikeout() throws IOException {
             List<ParagraphElement> strike = parseContent("--");
-            if (strike == null) {
-                return null;
-            } else {
-                return new Strikeout(strike);
-            }
+            return (strike != null) ? new Strikeout(strike) : null;
         }
 
         private Code parseCode(final String end) throws IOException {
             List<ParagraphElement> code = parseContent(end);
-            if (code == null) {
-                return null;
-            } else {
-                return new Code(code);
-            }
+            return (code != null) ? new Code(code) : null;
         }
 
     }
