@@ -2,33 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7159db8b-36cf-4296-bf97-62e14957963a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test1.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test1.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test13.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test13.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/base/Asserts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/base/MainChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/base/MainFilesChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/base/MainStdChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/base/Pair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/base/Randomized.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/base/TestCounter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/Add.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/BaseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/BinaryOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/ClassExpression.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/Const.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/Divide.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/DoubleExpression.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/DoubleExpressionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/Expression.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/ExpressionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/Multiply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/Subtract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/ToMiniString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/TripleExpression.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/src/expression/Variable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ParserFinal/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../P7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../P7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/P9.iml" beforeDir="false" afterPath="$PROJECT_DIR$/P9.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/base/Asserts.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/base/Asserts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/base/MainStdChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/base/MainStdChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/markup/Header.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/markup/Header.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/markup/Paragraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/markup/Paragraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/parser/Document.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/parser/MDException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner$TokenParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner$TokenParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner$WordParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner$WordParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P9/scanner/MyScanner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/markup/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/markup/Header.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/markup/Paragraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/markup/Paragraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/md2html/Md2Html.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/md2html/Md2Html.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/md2html/Md2HtmlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/md2html/Md2HtmlTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scanner/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scanner/MyScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test3.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ParserFinal/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ParserFinal/.idea/misc.xml" afterDir="false" />
     </list>
     <list id="408703e1-5f0b-42e7-bbc9-83b944141d82" name="fix text" comment="" />
     <list id="7438df85-c984-4655-b571-84f0948039a1" name="fix2" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,12 +52,17 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/md2html" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -74,18 +82,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\ITMO_KT01\Programming\P9\patches" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -129,6 +125,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -146,6 +154,7 @@
       <workItem from="1574793531219" duration="4002000" />
       <workItem from="1575138759910" duration="19940000" />
       <workItem from="1575310757938" duration="33344000" />
+      <workItem from="1576074528828" duration="24000" />
     </task>
     <task id="LOCAL-00001" summary="001: Scanner station saver added. &#10;002: New structure added.">
       <created>1575196153694</created>
