@@ -1,24 +1,10 @@
 package expression;
 
 public class Divide extends BinaryOperation {
-    Divide(GenericExpression left, GenericExpression right) {
+    Divide(BaseExpression left, BaseExpression right) {
         super(left, right, '/');
     }
 
-    @Override
-    public int evaluate(int x) {
-        return super.left.evaluate(x) / super.right.evaluate(x);
-    }
-
-    @Override
-    public double evaluate(double x) {
-        return super.left.evaluate(x) / super.right.evaluate(x);
-    }
-
-    @Override
-    public int evaluate(int x, int y, int z) {
-        return super.left.evaluate(x,y,z) / super.right.evaluate(x,y,z);
-    }
 
     @Override
     public int getPriority() {
@@ -26,8 +12,22 @@ public class Divide extends BinaryOperation {
     }
 
     @Override
-    public boolean isCommutative() {
-        return false;
+    public boolean isNotCommutative() {
+        return true;
     }
 
+    @Override
+    protected int calculate(int x) {
+        return super.left.evaluate(x) / super.right.evaluate(x);
+    }
+
+    @Override
+    protected double calculate(double x) {
+        return super.left.evaluate(x) / super.right.evaluate(x);
+    }
+
+    @Override
+    protected int calculate(int x, int y, int z) {
+        return super.left.evaluate(x,y,z) / super.right.evaluate(x,y,z);
+    }
 }

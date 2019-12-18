@@ -1,14 +1,16 @@
 package expression;
 
-public abstract class BinaryOperation implements GenericExpression {
-    GenericExpression left, right;
+public abstract class BinaryOperation extends BaseExpression
+        implements GenericExpression {
+    BaseExpression left, right;
 
     char operator;
 
-    BinaryOperation(GenericExpression left, GenericExpression right, char operator) {
+    BinaryOperation(BaseExpression left, BaseExpression right, char operator) {
         this.left = left;
         this.right = right;
         this.operator = operator;
+        setConstExpr(left.isConstExpr() && right.isConstExpr());
     }
 
     @Override
@@ -51,7 +53,7 @@ public abstract class BinaryOperation implements GenericExpression {
             addBrackets(result, right);
         } else {
             if (getPriority() == right.getPriority() &&
-                    (!isCommutative() || !right.isCommutative())) {
+                    (isNotCommutative() || right.isNotCommutative())) {
                 addBrackets(result, right);
             } else {
                 result.append(right.toMiniString());

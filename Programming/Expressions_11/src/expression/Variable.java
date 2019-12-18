@@ -1,10 +1,12 @@
 package expression;
 
-public class Variable implements GenericExpression {
+public class Variable extends BaseExpression
+        implements GenericExpression {
     private String variable;
 
     public Variable(String variable) {
         this.variable = variable;
+        setConstExpr(false);
     }
 
     @Override
@@ -43,8 +45,8 @@ public class Variable implements GenericExpression {
     }
 
     @Override
-    public boolean isCommutative() {
-        return false;
+    public boolean isNotCommutative() {
+        return true;
     }
 
     @Override

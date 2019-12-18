@@ -1,6 +1,7 @@
 package expression;
 
-public class Const implements GenericExpression {
+public class Const extends BaseExpression
+        implements GenericExpression {
     boolean isIntVal;
     int intValue;
     double doubleValue;
@@ -8,12 +9,14 @@ public class Const implements GenericExpression {
         this.intValue = intValue;
         this.doubleValue = intValue;
         isIntVal = true;
+        setIntConstVal(intValue);
     }
 
     Const(double doubleValue) {
         this.doubleValue = doubleValue;
         this.intValue = (int) doubleValue;
         isIntVal = false;
+        setDblConstVal(doubleValue);
     }
 
     @Override
@@ -47,8 +50,8 @@ public class Const implements GenericExpression {
     }
 
     @Override
-    public boolean isCommutative() {
-        return false;
+    public boolean isNotCommutative() {
+        return true;
     }
 
 
