@@ -29,25 +29,6 @@ public final class MNKBoard implements Board, Position {
         turn = Cell.X;
     }
 
-    private MNKBoard(int rowNumber, int columnNumber, int winNumber, Cell[][] field, int emptyCells, Cell turn) {
-        this.rowNumber = rowNumber;
-        this.columnNumber = columnNumber;
-        this.winNumber = winNumber;
-        this.field = new Cell[rowNumber][columnNumber];
-        for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[0].length; j++) {
-                this.field[i][j] = field[i][j];
-            }
-        }
-
-        this.emptyCells = emptyCells;
-        this.turn = turn;
-    }
-
-    public MNKBoard copy(){
-        return new MNKBoard(rowNumber, columnNumber, winNumber, field, emptyCells, turn);
-    }
-
     @Override
     public int getRowNumber() {
         return rowNumber;
@@ -60,7 +41,7 @@ public final class MNKBoard implements Board, Position {
 
     @Override
     public Position getPosition() {
-        return this;
+        return new ProtectedPosition(this);
     }
 
     @Override

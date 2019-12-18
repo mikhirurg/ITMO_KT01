@@ -4,21 +4,20 @@ public class Game {
     private final Player firstPlayer;
     private final Player secondPlayer;
 
-    public Game(Player playerFirst, Player playerSecond) {
-        this.firstPlayer = playerFirst;
-        this.secondPlayer = playerSecond;
+    public Game(Player firstPlayer, Player secondPlayer) {
+        this.firstPlayer = firstPlayer;
+        this.secondPlayer = secondPlayer;
     }
 
     public int start(Board board) {
-        Board fake = board.copy();
         Log log = new Log();
         do {
-            final int result1 = move(fake, firstPlayer, 1);
+            final int result1 = move(board, firstPlayer, 1);
             log.log(board.toString());
             if (result1 != -1) {
                 return result1;
             }
-            final int result2 = move(fake, secondPlayer, 2);
+            final int result2 = move(board, secondPlayer, 2);
             log.log(board.toString());
             if (result2 != -1) {
                 return result2;
@@ -27,8 +26,7 @@ public class Game {
     }
 
     private int move(Board board, Player player, int number) {
-        Board fake = board.copy();
-        final Move move = player.move(fake.getPosition(), fake.getTurn());
+        final Move move = player.move(board.getPosition(), board.getTurn());
         Result result = board.makeMove(move);
         switch (result) {
             case WIN: return number;
