@@ -42,8 +42,8 @@ public class Const implements GenericExpression {
     }
 
     @Override
-    public String getOperator() {
-        return "";
+    public char getOperator() {
+        return ' ';
     }
 
     @Override
@@ -51,40 +51,6 @@ public class Const implements GenericExpression {
         return false;
     }
 
-    @Override
-    public int getIntConstVal() {
-        return intValue;
-    }
-
-    @Override
-    public double getDoubleConstVal() {
-        return doubleValue;
-    }
-
-    @Override
-    public boolean isPreEval() {
-        return true;
-    }
-
-    @Override
-    public boolean isConst() {
-        return true;
-    }
-
-    @Override
-    public void PreEvaluated() {
-
-    }
-
-    @Override
-    public void addResult(int x, int val) {
-
-    }
-
-    @Override
-    public void addResult(double x, double val) {
-
-    }
 
     @Override
     public int hashCode() {
@@ -108,5 +74,4 @@ public class Const implements GenericExpression {
         }
         return this.hashCode() == obj.hashCode();
     }
-
 }

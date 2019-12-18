@@ -38,48 +38,13 @@ public class Variable implements GenericExpression {
     }
 
     @Override
-    public String getOperator() {
-        return "";
+    public char getOperator() {
+        return ' ';
     }
 
     @Override
     public boolean isCommutative() {
         return false;
-    }
-
-    @Override
-    public int getIntConstVal() {
-        return 0;
-    }
-
-    @Override
-    public double getDoubleConstVal() {
-        return 0;
-    }
-
-    @Override
-    public boolean isPreEval() {
-        return false;
-    }
-
-    @Override
-    public boolean isConst() {
-        return false;
-    }
-
-    @Override
-    public void PreEvaluated() {
-
-    }
-
-    @Override
-    public void addResult(int x, int val) {
-
-    }
-
-    @Override
-    public void addResult(double x, double val) {
-
     }
 
     @Override
