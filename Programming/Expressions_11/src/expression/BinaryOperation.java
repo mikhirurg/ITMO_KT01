@@ -1,14 +1,68 @@
 package expression;
 
+import java.util.HashMap;
+
 public abstract class BinaryOperation implements GenericExpression {
     GenericExpression left, right;
+    private int hash;
+    private final int prime = 7;
+    private String operator;
+    private boolean constant;
+    private double doubleConstVal;
+    private int intConstVal;
+    private boolean isPreEval = false;
 
-    char operator;
+    private HashMap<Integer, Integer> varIntEval = new HashMap<>();
+    private HashMap<Double, Double> varDoubleEval = new HashMap<>();
 
-    BinaryOperation(GenericExpression left, GenericExpression right, char operator) {
+    BinaryOperation(GenericExpression left, GenericExpression right, String operator) {
         this.left = left;
         this.right = right;
         this.operator = operator;
+        this.hash = left.hashCode() * prime + right.hashCode() * prime * prime + operator.hashCode();
+        this.constant = left.isConst() & right.isConst();
+        if (constant) {
+            doubleConstVal = this.evaluate(0.0);
+            intConstVal = this.evaluate(0);
+        }
+    }
+
+    @Override
+    public void PreEvaluated() {
+        isPreEval = true;
+    }
+
+    @Override
+    public boolean isPreEval(){
+        return isPreEval;
+    }
+
+    @Override
+    public int getIntConstVal() {
+        return intConstVal;
+    }
+
+    @Override
+    public double getDoubleConstVal() {
+        return doubleConstVal;
+    }
+
+    @Override
+    public double evaluate(double x) {
+        if (isConst()) {
+            return doubleConstVal;
+        }
+        return evaluate(x);
+    }
+
+    @Override
+    public void addResult(int x, int val) {
+        varIntEval.put(x,val);
+    }
+
+    @Override
+    public void addResult(double x, double val) {
+        varDoubleEval.put(x,val);
     }
 
     @Override
@@ -16,19 +70,12 @@ public abstract class BinaryOperation implements GenericExpression {
         return "("+left.toString()+" "+operator+" "+right.toString()+")";
     }
 
-    public char getOperator() {
+    public String getOperator() {
         return operator;
     }
 
     @Override
     public int hashCode() {
-        String str = this.toString();
-        int prime = 31;
-        int hash = 0;
-        for (char c : str.toCharArray()) {
-            hash += prime * c;
-            prime *= prime;
-        }
         return hash;
     }
 
@@ -73,4 +120,10 @@ public abstract class BinaryOperation implements GenericExpression {
         }
         return this.hashCode() == obj.hashCode();
     }
+
+    @Override
+    public boolean isConst() {
+        return constant;
+    }
+
 }

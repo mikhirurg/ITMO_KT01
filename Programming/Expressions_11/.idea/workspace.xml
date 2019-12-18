@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5844f92a-82f5-4f56-9273-fec3d7e696e6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/META-INF/Expressions_11.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/base/Asserts.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/base/MainChecker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/base/MainFilesChecker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/base/MainStdChecker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/base/Pair.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/base/Randomized.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/base/TestCounter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/Add.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/BaseTest$Op.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/BaseTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/BinaryOperation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/Const.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/Divide.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/DoubleExpression.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/DoubleExpressionTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/Expression.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/ExpressionTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/GenericExpression.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/Multiply.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/Subtract.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/ToMiniString.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/TripleExpression.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/TripleExpressionTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Expressions_11/expression/Variable.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MNKGame/MNKGame.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P11/P11.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expression/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/expression/Add.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expression/BinaryOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/expression/BinaryOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expression/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/expression/Const.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expression/Divide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/expression/Divide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expression/GenericExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/expression/GenericExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expression/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/expression/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expression/Multiply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/expression/Multiply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expression/Subtract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/expression/Subtract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expression/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/expression/Variable.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\ITMO_KT01\Programming\Expressions_11\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1V7BRdny4ZEgZjI2c8B1O6XLgaR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mikha\IdeaProjects\Expressions_11\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.DoubleExpressionTest">
+    <configuration name="DoubleExpressionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="expression.DoubleExpressionTest" />
+      <module name="Expressions_11" />
+      <option name="PROGRAM_PARAMETERS" value="easy" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="expression.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExpressionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="expression.ExpressionTest" />
+      <module name="Expressions_11" />
+      <option name="PROGRAM_PARAMETERS" value="hard" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="expression.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="expression.Main" />
+      <module name="Expressions_11" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="expression.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TripleExpressionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="expression.TripleExpressionTest" />
+      <module name="Expressions_11" />
+      <option name="PROGRAM_PARAMETERS" value="easy" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="expression.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ExpressionTest" />
+      <item itemvalue="Application.TripleExpressionTest" />
+      <item itemvalue="Application.DoubleExpressionTest" />
+      <item itemvalue="Application.Main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DoubleExpressionTest" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ExpressionTest" />
+        <item itemvalue="Application.TripleExpressionTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5844f92a-82f5-4f56-9273-fec3d7e696e6" name="Default Changelist" comment="" />
+      <created>1576594245921</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576594245921</updated>
+      <workItem from="1576594249588" duration="31757000" />
+      <workItem from="1576626973544" duration="218000" />
+      <workItem from="1576683971737" duration="7197000" />
+    </task>
+    <task id="LOCAL-00001" summary="HW 11 Done (without hashmap)">
+      <created>1576627092644</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576627092644</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="HW 11 Done (without hashmap)" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW 11 Done (without hashmap)" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="372" y="114" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576604749861">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="372" y="114" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576604749861" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1576602513790" />
+    <state x="378" y="211" key="#com.intellij.ide.util.MemberChooser" timestamp="1576689310142">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="378" y="211" key="#com.intellij.ide.util.MemberChooser/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576689310142" />
+    <state x="227" y="124" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1576601554764" />
+    <state x="1436" y="293" key="CommitChangelistDialog2" timestamp="1576627090117">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1436" y="293" key="CommitChangelistDialog2/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576627090117" />
+    <state width="1426" height="540" key="GridCell.Tab.0.bottom" timestamp="1576689353491">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1426" height="540" key="GridCell.Tab.0.bottom/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576689353491" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1576602515692" />
+    <state width="1426" height="540" key="GridCell.Tab.0.center" timestamp="1576689353491">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1426" height="540" key="GridCell.Tab.0.center/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576689353491" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1576602515692" />
+    <state width="1426" height="540" key="GridCell.Tab.0.left" timestamp="1576689353491">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1426" height="540" key="GridCell.Tab.0.left/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576689353491" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1576602515691" />
+    <state width="1426" height="540" key="GridCell.Tab.0.right" timestamp="1576689353491">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1426" height="540" key="GridCell.Tab.0.right/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576689353491" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1576602515692" />
+    <state width="1426" height="489" key="GridCell.Tab.1.bottom" timestamp="1576689344401">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1426" height="489" key="GridCell.Tab.1.bottom/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576689344401" />
+    <state width="1426" height="489" key="GridCell.Tab.1.center" timestamp="1576689344400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1426" height="489" key="GridCell.Tab.1.center/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576689344400" />
+    <state width="1426" height="489" key="GridCell.Tab.1.left" timestamp="1576689344400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1426" height="489" key="GridCell.Tab.1.left/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576689344400" />
+    <state width="1426" height="489" key="GridCell.Tab.1.right" timestamp="1576689344401">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1426" height="489" key="GridCell.Tab.1.right/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576689344401" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1576597674125">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1576597674125" />
+    <state x="1417" y="433" key="Vcs.Push.Dialog.v2" timestamp="1576627095316">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1417" y="433" key="Vcs.Push.Dialog.v2/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576627095316" />
+    <state x="81" y="123" width="1639" height="1234" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1576625261518">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="81" y="123" width="1639" height="1234" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576625261518" />
+    <state x="452" y="0" width="1639" height="1234" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.0.1536.818/0.0.2560.1401@0.0.2560.1401" timestamp="1576623394677" />
+    <state x="1650" y="483" key="extract.method.dialog" timestamp="1576616440669">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1650" y="483" key="extract.method.dialog/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576616440669" />
+    <state x="511" y="40" key="refactoring.ChangeSignatureDialog" timestamp="1576600693296">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="511" y="40" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1576600693296" />
+    <state x="1583" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1576617714690">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1583" y="320" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1576617714690" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/expression/Main.java</url>
+          <line>5</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
