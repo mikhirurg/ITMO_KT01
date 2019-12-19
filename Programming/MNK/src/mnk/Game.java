@@ -12,7 +12,7 @@ public class Game {
     public int startMatch(Board board, int number) {
         Log log = new Log(System.out);
         log.log("Get ready for the Match!");
-        Table matchTable = new Table(number);
+        Table matchTable = new Table();
         while (matchTable.totalScore() != number) {
             final int result = this.startSingleRound(board);
             switch (result) {

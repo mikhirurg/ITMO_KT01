@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Table {
-    private int rounds;
     private int pointerFirst;
     private int pointerSecond;
     int[] currentScore = new int[2];
     ArrayList<int[]> history = new ArrayList<>();
-    Table(int rounds) {
-        this.rounds = rounds;
+    Table() {
         pointerFirst = 0;
         pointerSecond = 1;
     }
