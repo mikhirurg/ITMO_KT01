@@ -1,5 +1,5 @@
 package mnk;
 
 public enum Cell {
-    X, O, B     //B for "Blank"
+    X, O, E     //E for "Blank"
 }

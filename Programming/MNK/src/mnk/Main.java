@@ -4,16 +4,38 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
+    private static Player getPlayer(Scanner in) {
+        Player player = null;
+        while (player == null) {
+            System.out.println("1 - RandomPlayer, 2 - HumanPlayer");
+            StringTokenizer input = new StringTokenizer(in.nextLine());
+            if (input.countTokens() != 1) {
+                System.out.println("Wrong number of arguments.");
+                continue;
+            }
+            String number = input.nextToken();
+            if (number.equals("1")) {
+                player = new RandomPlayer();
+            } else {
+                if (number.equals("2")) {
+                    player = new HumanPlayer();
+                } else {
+                    System.out.println("No such player!");
+                }
+            }
+        }
+        return player;
+    }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
 
-        int row = -1;
-        int column = -1;
-        int win = -1;
+        int row;
+        int column;
+        int win;
 
         while (true) {
             System.out.println("Enter number of rows, columns and winning number separated by a whitespace:");
-            StringTokenizer input = new StringTokenizer(sc.nextLine());
+            StringTokenizer input = new StringTokenizer(in.nextLine());
             if (input.countTokens() != 3) {
                 System.out.println("Wrong number of arguments.");
                 continue;
@@ -26,50 +48,46 @@ public class Main {
                     throw new NumberFormatException();
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Wrong input format. Params must be > 0");
+                System.out.println("Wrong input format. Params must be int value > 0");
                 continue;
             }
             break;
         }
 
-        Player playerOne = null;
+        Player playerOne;
         System.out.println("Who will be the first player?");
-        while (playerOne == null) {
-            System.out.println("1 - RandomPlayer, 2 - HumanPlayer");
-            String input = sc.next();
-            if (input.equals("1")) {
-                playerOne = new RandomPlayer();
-            } else if (input.equals("2")) {
-                playerOne = new HumanPlayer();
-            } else {
-                System.out.println("No such player!");
-            }
-        }
+        playerOne = getPlayer(in);
 
-        Player playerTwo = null;
+        Player playerTwo;
         System.out.println("Choose second player: ");
-        while (playerTwo == null) {
-            System.out.println("1 - RandomPlayer, 2 - Human");
-            String input = sc.next();
-            if (input.equals("1")) {
-                playerTwo = new RandomPlayer();
-            } else if (input.equals("2")) {
-                playerTwo = new HumanPlayer();
-            } else {
-                System.out.println("No such player!");
-            }
-        }
+        playerTwo = getPlayer(in);
 
         final Game game = new Game(playerOne, playerTwo);
-
-        int result = game.startMatch(new MNKBoard(row, column, win), 2);
+        int rounds;
+        while (true) {
+            System.out.println("Enter number of rounds in match:");
+            StringTokenizer input = new StringTokenizer(in.nextLine());
+            if (input.countTokens() != 1) {
+                System.out.println("Wrong number of arguments.");
+                continue;
+            }
+            try{
+                rounds = Integer.parseInt(input.nextToken());
+                if (rounds <= 0) {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Wrong input format. Params must be int value > 0");
+                continue;
+            }
+            break;
+        }
+        int result = game.startMatch(new MNKBoard(row, column, win), rounds);
         if (result != 0) {
             System.out.println("Player " + result + " won!");
         } else {
             System.out.println("Draw!");
         }
-
-
-        sc.close();
+        in.close();
     }
 }

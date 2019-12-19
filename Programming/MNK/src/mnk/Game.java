@@ -23,6 +23,10 @@ public class Game {
                     matchTable.addSecond(1);
                     continue;
             }
+            if (number == matchTable.totalScore()) {
+                break;
+            }
+            board.clearBoard();
             matchTable.swapPlayers();
         }
         if (matchTable.getFirstScore() == matchTable.getSecondScore()) {
@@ -37,7 +41,7 @@ public class Game {
 
     public int startSingleRound(Board board) {
         Log log = new Log();
-        while(true) {
+        do {
             final int result1 = move(board, firstPlayer, 1);
             log.log(board.toString());
             if (result1 != -1) {
@@ -48,7 +52,7 @@ public class Game {
             if (result2 != -1) {
                 return result2;
             }
-        }
+        } while(true);
     }
 
     private int move(Board board, Player player, int number) {

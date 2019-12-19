@@ -7,7 +7,7 @@ public final class MNKBoard implements Board, Position {
     private static final Map<Cell, Character> DISPLAY = Map.of(
             Cell.X, 'X',
             Cell.O, 'O',
-            Cell.B, '.'
+            Cell.E, '.'
     );
     private final Cell[][] field;
     private int emptyCells;
@@ -25,7 +25,7 @@ public final class MNKBoard implements Board, Position {
         this.winNumber = winNumber;
         field = new Cell[rowNumber][columnNumber];
         for (Cell[] row : field) {
-            Arrays.fill(row, Cell.B);
+            Arrays.fill(row, Cell.E);
         }
         emptyCells = rowNumber * columnNumber;
         turn = Cell.X;
@@ -60,7 +60,7 @@ public final class MNKBoard implements Board, Position {
     public boolean isValid(Move move) {
         return (0 <= move.getRow() && move.getRow() < rowNumber &&
                 0 <= move.getColumn() && move.getColumn() < columnNumber &&
-                field[move.getRow()][move.getColumn()] == Cell.B &&
+                field[move.getRow()][move.getColumn()] == Cell.E &&
                 move.getCell() == turn);
     }
 
@@ -95,6 +95,14 @@ public final class MNKBoard implements Board, Position {
             }
         }
 
+    }
+
+    @Override
+    public void clearBoard() {
+        for (Cell[] row : field) {
+            Arrays.fill(row, Cell.E);
+        }
+        emptyCells = rowNumber * columnNumber;
     }
 
     private int checkMove(int currRow, int currCol, int rowDelta, int colDelta, Cell cell) {

@@ -1,6 +1,7 @@
 package mnk;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Table {
     private int rounds;
@@ -16,12 +17,14 @@ public class Table {
 
     public void addFirst(int score) {
         currentScore[pointerFirst] += score;
-        history.add(currentScore);
+        int[] tmpScore = Arrays.copyOf(currentScore, currentScore.length);
+        history.add(tmpScore);
     }
 
     public void addSecond(int score) {
         currentScore[pointerSecond] += score;
-        history.add(currentScore);
+        int[] tmpScore = Arrays.copyOf(currentScore, currentScore.length);
+        history.add(tmpScore);
     }
 
     public int totalScore() {
@@ -53,13 +56,19 @@ public class Table {
 
     public String matchReview() {
         StringBuilder sb = new StringBuilder();
+        sb.append("Match review: \n");
         sb.append("First player \t:\t Second Player\n");
+        int pFirst = 0;
+        int pSecond = 1;
         for (int[] hist : history) {
             sb.append("\t   ");
-            sb.append(hist[pointerFirst]);
-            sb.append("     \t        ");
-            sb.append(hist[pointerSecond]);
+            sb.append(hist[pFirst]);
+            sb.append("     \t          ");
+            sb.append(hist[pSecond]);
             sb.append("\n");
+            int tmp = pFirst;
+            pFirst = pSecond;
+            pSecond = tmp;
         }
         return sb.toString();
     }
