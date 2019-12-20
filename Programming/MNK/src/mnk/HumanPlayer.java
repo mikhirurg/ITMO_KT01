@@ -20,6 +20,8 @@ public class HumanPlayer implements Player {
 
     @Override
     public Move move(final Position pos, final Cell cell) {
+        /*Board b = (MNKBoard) pos;
+        b.makeMove(new Move(1,1,Cell.X));*/
         out.println("Current position:");
         out.print(pos);
         out.println("Now is the " + cell + "'s turn.");
