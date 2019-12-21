@@ -1,7 +1,6 @@
 package expression;
 
-public abstract class BinaryOperation extends BaseExpression
-        implements CommonExpression {
+public abstract class BinaryOperation extends BaseExpression implements CommonExpression {
     BaseExpression left, right;
 
     String operator;
@@ -90,7 +89,8 @@ public abstract class BinaryOperation extends BaseExpression
         if (getClass() != obj.getClass()) {
             return false;
         }
-        return this.hashCode() == obj.hashCode();
+        BinaryOperation tmp= (BinaryOperation)obj;
+        return this.getOperator().equals(tmp.getOperator()) && this.left.equals(tmp.left) && this.right.equals(tmp.right);
     }
 
 }

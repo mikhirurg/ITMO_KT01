@@ -3,7 +3,7 @@ package expression;
 import java.util.HashMap;
 
 public abstract class BaseExpression implements CommonExpression {
-    static class Args {
+    private static class Args {
         int [] args;
 
         public Args(int x) {

@@ -50,6 +50,7 @@ public abstract class UnaryOperation extends BaseExpression
         if (getClass() != obj.getClass()) {
             return false;
         }
-        return this.hashCode() == obj.hashCode();
+        UnaryOperation tmp = (UnaryOperation)obj;
+        return getOperator().equals(tmp.getOperator());
     }
 }
